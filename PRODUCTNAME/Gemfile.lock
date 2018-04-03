@@ -258,14 +258,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cocoapods (~> 1.5.0)
+  cocoapods
   danger (~> 5.5.11)
   danger-swiftlint (~> 0.16.0)
   danger-xcov (~> 0.4.1)
-  fastlane (~> 2.89.0)
+  fastlane
   fastlane-plugin-install_provisioning_profiles!
-  nanaimo (~> 0.2.2)
-  synx (~> 0.2.1)
+  nanaimo
+  synx
   xcov!
 
 BUNDLED WITH
