@@ -38,6 +38,58 @@ Inspired by [thoughtbot]/[ios-template]
 
 ## Usage
 
+#### Prerequisites
+
+Install `chruby` to manage your Ruby versions.
+
+```bash
+$ brew install ruby-install chruby
+```
+
+Add `chruby` init to your bash profile (usually `~/.profile`).
+
+```bash
+$ open ~/.profile 
+```
+
+```bash
+# Support multiple Ruby versions via chruby
+source "/usr/local/opt/chruby/share/chruby/chruby.sh"
+source "/usr/local/opt/chruby/share/chruby/auto.sh"
+# Optional - automatically/globally switch to chruby's latest Ruby
+chruby ruby
+```
+
+```bash
+$ source ~/.profile
+```
+
+Install latest stable Ruby version, which should match the [Ruby version on CircleCI](https://circleci.com/docs/2.0/testing-ios/#custom-ruby-versions) and specified in [`PRODUCTNAME/.ruby-version`](https://github.com/Raizlabs/ios-template/blob/master/PRODUCTNAME/.ruby-version).
+
+```bash
+# Install latest stable Ruby
+$ ruby-install ruby
+
+# Or install a specific version
+$ ruby-install ruby 2.5.1
+
+# Refresh installed chruby Ruby versions
+$ source /usr/local/share/chruby/chruby.sh
+
+# Test that chruby is working
+$ chruby ruby-2.5.1 # or `chruby ruby` for latest
+$ which ruby
+```
+
+Install the `bundler` gem in the chruby version corresponding to `PRODUCTNAME/.ruby-version`.
+
+```bash
+$ chruby ruby-2.5.1
+$ gem install bundler
+```
+
+#### Installation
+
 1. [Install cookiecutter][cookiecutter] (`brew install cookiecutter` on
    macOS).
 1. Run `cookiecutter gh:raizlabs/ios-template`.
