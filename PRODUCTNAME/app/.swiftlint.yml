@@ -38,3 +38,4 @@ custom_rules:
 excluded:
   - Pods
   - PRODUCTNAME/Resources/Generated
+  - fastlane/SnapshotHelper.swift
