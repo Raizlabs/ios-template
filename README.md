@@ -64,7 +64,7 @@ chruby ruby
 $ source ~/.profile
 ```
 
-* Install latest stable Ruby version, which should match the [Ruby version on CircleCI](https://circleci.com/docs/2.0/testing-ios/#custom-ruby-versions) and specified in [`PRODUCTNAME/.ruby-version`](https://github.com/Raizlabs/ios-template/blob/master/PRODUCTNAME/.ruby-version).
+Install latest stable Ruby version, which should match the [Ruby version on CircleCI](https://circleci.com/docs/2.0/testing-ios/#custom-ruby-versions) and specified in [`PRODUCTNAME/.ruby-version`](https://github.com/Raizlabs/ios-template/blob/master/PRODUCTNAME/.ruby-version).
 
 ```bash
 # Install latest stable Ruby
@@ -79,6 +79,13 @@ $ source /usr/local/share/chruby/chruby.sh
 # Test that chruby is working
 $ chruby ruby-2.5.1 # or `chruby ruby` for latest
 $ which ruby
+```
+
+Install the `bundler` gem in the chruby version corresponding to `PRODUCTNAME/.ruby-version`.
+
+```bash
+$ chruby ruby-2.5.1
+$ gem install bundler
 ```
 
 #### Installation
