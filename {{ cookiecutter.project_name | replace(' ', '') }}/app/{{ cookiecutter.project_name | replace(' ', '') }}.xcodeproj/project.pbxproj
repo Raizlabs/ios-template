@@ -57,7 +57,7 @@
 		86A65B191FA0F22B00705C14 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A65B151FA0F22B00705C14 /* Formatters.swift */; };
 		86A65B1A1FA0F22B00705C14 /* Marshal+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A65B161FA0F22B00705C14 /* Marshal+Utility.swift */; };
 		86A65B1D1FA0F2C900705C14 /* BuildType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A65B1C1FA0F2C900705C14 /* BuildType.swift */; };
-		86A65B201FA0F6DB00705C14 /* UserDefaults+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A65B1F1FA0F6DB00705C14 /* UserDefaults+Utility.swift */; };
+		86A65B201FA0F6DB00705C14 /* UserDefaults+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A65B1F1FA0F6DB00705C14 /* UserDefaults+Utilities.swift */; };
 		959F487642A61EF85C170AF9 /* Pods_{{ cookiecutter.project_name | replace(' ', '') }}_{{ cookiecutter.project_name | replace(' ', '') }}Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 845339F96003195CE76EA042 /* Pods_{{ cookiecutter.project_name | replace(' ', '') }}_{{ cookiecutter.project_name | replace(' ', '') }}Tests.framework */; };
 		ABC778791DC90B7A00815FB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC778781DC90B7A00815FB9 /* AppDelegate.swift */; };
 		ABC778801DC90B7A00815FB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABC7787F1DC90B7A00815FB9 /* Assets.xcassets */; };
@@ -177,7 +177,7 @@
 		86A65B151FA0F22B00705C14 /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		86A65B161FA0F22B00705C14 /* Marshal+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Marshal+Utility.swift"; sourceTree = "<group>"; };
 		86A65B1C1FA0F2C900705C14 /* BuildType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildType.swift; sourceTree = "<group>"; };
-		86A65B1F1FA0F6DB00705C14 /* UserDefaults+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Utility.swift"; sourceTree = "<group>"; };
+		86A65B1F1FA0F6DB00705C14 /* UserDefaults+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Utilities.swift"; sourceTree = "<group>"; };
 		8CD9F2E21AB27A0230007885 /* Pods_{{ cookiecutter.project_name | replace(' ', '') }}.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_{{ cookiecutter.project_name | replace(' ', '') }}.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E14AD116B1BB93B2490FFA3 /* Pods-Services.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Services.develop.xcconfig"; path = "Pods/Target Support Files/Pods-Services/Pods-Services.develop.xcconfig"; sourceTree = "<group>"; };
 		9E61F9E4F9A440040EE8DCF0 /* Pods-{{ cookiecutter.project_name | replace(' ', '') }}.sprint.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-{{ cookiecutter.project_name | replace(' ', '') }}.sprint.xcconfig"; path = "Pods/Target Support Files/Pods-{{ cookiecutter.project_name | replace(' ', '') }}/Pods-{{ cookiecutter.project_name | replace(' ', '') }}.sprint.xcconfig"; sourceTree = "<group>"; };
@@ -424,7 +424,7 @@
 		86A65B1E1FA0F6C700705C14 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				86A65B1F1FA0F6DB00705C14 /* UserDefaults+Utility.swift */,
+				86A65B1F1FA0F6DB00705C14 /* UserDefaults+Utilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1017,7 +1017,7 @@
 				862B204C1FA11315007D33BC /* DebugMenu.swift in Sources */,
 				BE2809301E8038BE006E50D5 /* ContentTabBarViewController.swift in Sources */,
 				862B204E1FA11345007D33BC /* DebugTextStyleViewController.swift in Sources */,
-				86A65B201FA0F6DB00705C14 /* UserDefaults+Utility.swift in Sources */,
+				86A65B201FA0F6DB00705C14 /* UserDefaults+Utilities.swift in Sources */,
 				861732FE1FA29BE600C14354 /* DebugMenuViewController.swift in Sources */,
 				2DFF1D181E8BF82A00B1AD70 /* Color.swift in Sources */,
 				861732D51FA28DB600C14354 /* ModalDismissBehavior.swift in Sources */,

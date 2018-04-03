@@ -1,5 +1,5 @@
 //
-//  UserDefaults+Utility.swift
+//  UserDefaults+Utilities.swift
 //  PRODUCTNAME
 //
 //  Created by LEADDEVELOPER on 3/27/17.
