@@ -10,9 +10,7 @@ jobs:
       - 
     steps:
       - checkout
-      - run:  if [ -n "${CI_PULL_REQUEST:-}" ]; then
-                cd PRODUCTNAME/app && bundle install && bundle exec fastlane test;
-              fi
+      - run: cd PRODUCTNAME/app && bundle install && bundle exec fastlane test
 
 dependencies:
   pre:
@@ -20,12 +18,8 @@ dependencies:
     - xcrun instruments -s #list available devices
     - xcrun instruments -w 'E8DD285C-51EE-4DB5-B326-7E927686EC36' || true #mitigate scenario where simulator resource isn't available - device is iPhone 6s (9.3)
 
-# jobs:
-#   build:
-#     xcode:
-#       version: "9.2.0"
-#     environment:
-#         FASTLANE_SKIP_UPDATE_CHECK: 1
-
-# test:
-
+workflows:
+  version: 2
+  build-test-adhoc:
+    jobs:
+      - test
