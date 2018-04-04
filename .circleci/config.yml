@@ -25,6 +25,17 @@ jobs:
           key: 1-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
           paths:
             - vendor/bundle
+      # Restore CocoaPods
+      - restore_cache:
+          key: 1-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
+      - run:
+          name: Restore Pods
+          command: |
+           pod repo update
+      - save_cache:
+          key: 1-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
+          paths:
+            - "~/.cocoapods"
       # Python dependencies
       # - run:
       #     name: Pre-install Python CLI packages
