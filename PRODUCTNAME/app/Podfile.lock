@@ -100,7 +100,7 @@ DEPENDENCIES:
   - OHHTTPStubs/Swift
   - Sourcery (~> 0.10.1)
   - SwiftGen
-  - Swiftilities
+  - Swiftilities (~> 0.17.0)
   - SwiftLint
 
 SPEC CHECKSUMS:
@@ -119,6 +119,6 @@ SPEC CHECKSUMS:
   Swiftilities: 38a1e58d290e1a70f3ad345ccb2e2e0556375540
   SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
 
-PODFILE CHECKSUM: f76d5af149ce3301eb92cbeb42b3fe8dc585131b
+PODFILE CHECKSUM: 581ef38d5a02ca47e8790b4470649269223681c1
 
 COCOAPODS: 1.4.0

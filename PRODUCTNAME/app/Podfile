@@ -8,7 +8,7 @@ def shared
     pod 'BonMot'
     pod 'Alamofire'
     pod 'Anchorage'
-    pod 'Swiftilities'
+    pod 'Swiftilities', '~> 0.17.0'
 end
 
 target 'PRODUCTNAME' do
