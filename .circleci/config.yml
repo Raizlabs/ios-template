@@ -54,7 +54,7 @@ jobs:
           name: Test Template Output
           command: |
             echo Testing branch ${CIRCLE_BRANCH}
-            cookiecutter --no-input https://github.com/raizlabs/ios-template.git --checkout ${CIRCLE_BRANCH}
+            cookiecutter --no-input ./
             cp -r PRODUCTNAME/app/Pods ProjectName/app/Pods
             cd ProjectName/app
             bundle install
