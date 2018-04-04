@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
 inhibit_all_warnings!
 
@@ -8,7 +8,7 @@ def shared
     pod 'BonMot'
     pod 'Alamofire'
     pod 'Anchorage'
-    pod 'Swiftilities'
+    pod 'Swiftilities', '~> 0.16.0'
 end
 
 target 'PRODUCTNAME' do
@@ -30,7 +30,8 @@ end
 
 
 pod 'SwiftGen'
-pod 'Sourcery'
+# version 0.11.0 is broken, see https://github.com/krzysztofzablocki/Sourcery/issues/584
+pod 'Sourcery', '~> 0.10.1'
 pod 'SwiftLint'
 
 # This is a hack to support both 3.2 and 4.0 pods. Add the pod name to the array below to build in 4.0.

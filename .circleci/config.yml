@@ -46,7 +46,10 @@ jobs:
           name: Test Cookiecutter Template
           command: |
             echo Testing branch ${CIRCLE_BRANCH}
-            cookiecutter --no-input https://github.com/raizlabs/ios-template.git --checkout ${CIRCLE_BRANCH} 
+            cookiecutter --no-input https://github.com/raizlabs/ios-template.git --checkout ${CIRCLE_BRANCH}
+            cd ProjectName/app
+            bundle install
+            bundle exec fastlane test
       - run:
           name: Fastlane
           command: |
