@@ -31,6 +31,7 @@ jobs:
       - run:
           name: Restore Pods
           command: |
+           export BUNDLE_GEMFILE=./PRODUCTNAME/Gemfile
            bundle exec pod repo update
       - save_cache:
           key: 1-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
