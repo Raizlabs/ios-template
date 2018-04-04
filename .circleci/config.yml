@@ -43,16 +43,17 @@ jobs:
       #     # /usr/local/bin, where the CLI gets installed
       #     command: pip install $(grep -i -e coverage -e fabric -e aws requirements.txt)
       - restore_cache:
-          key: v1-python-requirements-{{ checksum "requirements.txt" }}
+          key: v2-python-requirements-{{ checksum "requirements.txt" }}
       - run:
           name: Install Python dependencies
           command: pip install -r requirements.txt
       - save_cache:
-          key: v1-python-requirements-{{ checksum "requirements.txt" }}
+          key: v2-python-requirements-{{ checksum "requirements.txt" }}
           paths:
             - "~/.cache/pip"
             - "/usr/local/lib/python2.7/site-packages"
             - "/usr/local/lib/site-python"
+            - "/usr/local/bin/cookiecutter"
       # - run:
       #     name: Install Cookiecutter
       #     command: pip install cookiecutter
