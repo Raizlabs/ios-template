@@ -21,8 +21,8 @@ jobs:
           command: |
            export BUNDLE_GEMFILE=./PRODUCTNAME/Gemfile
            bundle check || bundle install --path vendor/bundle
+           unset BUNDLE_GEMFILE
       # Download CocoaPods specs via HTTPS (faster than Git)
-      # and install CocoaPods.
       - run:
           name: Install CocoaPods
           command: |
@@ -40,37 +40,27 @@ jobs:
             - "/usr/local/lib/python2.7/site-packages"
             - "/usr/local/lib/site-python"
             - "/usr/local/bin/cookiecutter"
-      # - run:
-      #     name: Install Cookiecutter
-      #     command: pip install cookiecutter
-      # Restore CocoaPods
-      # - restore_cache:
-      #     key: 2-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
       # Run tests
       - run:
-          name: Test Cookiecutter Template
-          command: |
-            echo Testing branch ${CIRCLE_BRANCH}
-            cookiecutter --no-input https://github.com/raizlabs/ios-template.git --checkout ${CIRCLE_BRANCH}
-            cd ProjectName/app
-            bundle install
-            bundle exec fastlane test
-      - run:
-          name: Fastlane
+          name: Test Template Itself
           command: |
             cd PRODUCTNAME/app
             bundle install
             bundle exec fastlane test
-      # Cache CocoaPods
-      # - save_cache:
-      #     key: 2-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
-      #     paths:
-      #       - "~/.cocoapods"
+      - run:
+          name: Test Template Output
+          command: |
+            echo Testing branch ${CIRCLE_BRANCH}
+            cookiecutter --no-input https://github.com/raizlabs/ios-template.git --checkout ${CIRCLE_BRANCH}
+            cp -r PRODUCTNAME/app/Pods ProjectName/app/Pods
+            cd ProjectName/app
+            bundle install
+            bundle exec fastlane test
+      # Cache Gems
       - save_cache:
           key: 2-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
           paths:
             - vendor/bundle
-
 
 workflows:
   version: 2
