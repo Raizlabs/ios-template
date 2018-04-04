@@ -21,7 +21,12 @@ jobs:
           command: |
            export BUNDLE_GEMFILE=./PRODUCTNAME/Gemfile
            bundle check || bundle install --path vendor/bundle
-
+      # Download CocoaPods specs via HTTPS (faster than Git)
+      # and install CocoaPods.
+      - run:
+          name: Install CocoaPods
+          command: |
+            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       # Python dependencies
       - restore_cache:
           key: v3-python-requirements-{{ checksum "requirements.txt" }}
@@ -39,8 +44,8 @@ jobs:
       #     name: Install Cookiecutter
       #     command: pip install cookiecutter
       # Restore CocoaPods
-      - restore_cache:
-          key: 2-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
+      # - restore_cache:
+      #     key: 2-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
       # Run tests
       - run:
           name: Test Cookiecutter Template
@@ -57,10 +62,10 @@ jobs:
             bundle install
             bundle exec fastlane test
       # Cache CocoaPods
-      - save_cache:
-          key: 2-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
-          paths:
-            - "~/.cocoapods"
+      # - save_cache:
+      #     key: 2-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
+      #     paths:
+      #       - "~/.cocoapods"
       - save_cache:
           key: 2-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
           paths:
