@@ -12,7 +12,7 @@ jobs:
       - run:
           name: Set Ruby Version
           command: |
-            echo "ruby-2.4" > ~/.ruby-version
+            echo "ruby-2.5" > ~/.ruby-version
             chruby
       - restore_cache:
           key: 2-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
