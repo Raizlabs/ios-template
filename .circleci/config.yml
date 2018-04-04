@@ -14,14 +14,14 @@ jobs:
             echo "ruby-2.4" > ~/.ruby-version
             chruby
       - restore_cache:
-          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          key: 1-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
       - run:
           name: Restore Gems
           command: |
            export BUNDLE_GEMFILE=./PRODUCTNAME/Gemfile
            bundle check || bundle install --path vendor/bundle
       - save_cache:
-          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          key: 1-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
