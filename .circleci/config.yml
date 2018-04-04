@@ -31,7 +31,7 @@ jobs:
       - run:
           name: Restore Pods
           command: |
-           pod repo update
+           bundle exec pod repo update
       - save_cache:
           key: 1-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
           paths:
