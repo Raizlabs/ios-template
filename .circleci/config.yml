@@ -6,15 +6,24 @@ jobs:
     macos:
       xcode: "9.2.0"
     shell: /bin/bash --login -o pipefail
-    override:
-      - 
     steps:
       - checkout
       - run:
           name: Set Ruby Version
           command: |
-            echo "ruby-2.4.2" > ~/.ruby-version
+            echo "ruby-2.4" > ~/.ruby-version
             chruby
+      - restore_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Restore Gems
+          command: |
+           export BUNDLE_GEMFILE=./PRODUCTNAME/Gemfile
+           bundle check || bundle install --path vendor/bundle
+      - save_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
       - run:
           name: Install Cookiecutter
           command: pip install cookiecutter
@@ -30,14 +39,8 @@ jobs:
             bundle install
             bundle exec fastlane test
 
-dependencies:
-  pre:
-    - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
-    - xcrun instruments -s #list available devices
-    - xcrun instruments -w 'E8DD285C-51EE-4DB5-B326-7E927686EC36' || true #mitigate scenario where simulator resource isn't available - device is iPhone 6s (9.3)
-
 workflows:
   version: 2
-  build-test-adhoc:
+  test:
     jobs:
       - test
