@@ -15,26 +15,13 @@ jobs:
             echo "ruby-2.4" > ~/.ruby-version
             chruby
       - restore_cache:
-          key: 1-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
+          key: 2-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
       - run:
           name: Restore Gems
           command: |
            export BUNDLE_GEMFILE=./PRODUCTNAME/Gemfile
            bundle check || bundle install --path vendor/bundle
-      - save_cache:
-          key: 1-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
-          paths:
-            - vendor/bundle
 
-      - run:
-          name: Restore Pods
-          command: |
-           export BUNDLE_GEMFILE=./PRODUCTNAME/Gemfile
-           bundle exec pod repo update
-      - save_cache:
-          key: 1-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
-          paths:
-            - "~/.cocoapods"
       # Python dependencies
       - restore_cache:
           key: v3-python-requirements-{{ checksum "requirements.txt" }}
@@ -71,6 +58,11 @@ jobs:
           key: 2-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
           paths:
             - "~/.cocoapods"
+      - save_cache:
+          key: 2-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
 
 workflows:
   version: 2
