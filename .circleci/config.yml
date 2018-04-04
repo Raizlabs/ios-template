@@ -27,6 +27,9 @@ jobs:
           name: Install CocoaPods
           command: |
             curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      # Restore Pods
+      - restore_cache:
+          key: 3-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
       # Python dependencies
       - restore_cache:
           key: v3-python-requirements-{{ checksum "requirements.txt" }}
@@ -61,6 +64,11 @@ jobs:
           key: 2-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
           paths:
             - vendor/bundle
+      # Cache Pods
+      - save_cache:
+          key: 3-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
+          paths:
+            - "/Users/distiller/Library/Caches/CocoaPods"
 
 workflows:
   version: 2
