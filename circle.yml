@@ -7,11 +7,14 @@ dependencies:
 machine:
   xcode:
     version: "9.2.0"
+  shell: /bin/bash --login -eo pipefail
   environment:
       FASTLANE_SKIP_UPDATE_CHECK: 1
 
 test:
   override:
+    - set -e
+    - chruby
     - if [ -n "${CI_PULL_REQUEST:-}" ]; then
         cd PRODUCTNAME/app && bundle install && bundle exec fastlane test;
       fi
