@@ -1,5 +1,8 @@
 # iOS template
 
+[![Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg?style=flat)](https://swift.org)
+[![CircleCI](https://img.shields.io/circleci/project/github/Raizlabs/ios-template/master.svg)](https://circleci.com/gh/Raizlabs/ios-template)
+
 A template for new iOS projects at Raizlabs.
 
 Inspired by [thoughtbot]/[ios-template]
@@ -37,6 +40,74 @@ Inspired by [thoughtbot]/[ios-template]
 [swiftgen]: https://github.com/SwiftGen/SwiftGen
 
 ## Usage
+
+### Prerequisites
+
+#### Installing Ruby
+
+Install `chruby` to manage your Ruby versions. 
+
+The reason we are using `chruby` is because it is used on CircleCI, and the `.ruby-version` format conflicts with `rvm` (which expects `2.5.1` instead of `ruby-2.5.1`). If you don't have a Ruby version manager installed, you can probably skip all of these steps, but you may run into issues running `fastlane` and `pod` if your system Ruby version and gems do not match the project configuration.
+
+```bash
+$ brew install ruby-install chruby
+```
+
+Add `chruby` init to your bash profile (usually `~/.profile`).
+
+```bash
+$ open ~/.profile 
+```
+
+```bash
+# Support multiple Ruby versions via chruby
+source "/usr/local/opt/chruby/share/chruby/chruby.sh"
+source "/usr/local/opt/chruby/share/chruby/auto.sh"
+# Optional - automatically/globally switch to chruby's latest Ruby
+chruby ruby
+```
+
+```bash
+$ source ~/.profile
+```
+
+Install latest stable Ruby version, which should match the [Ruby version on CircleCI](https://circleci.com/docs/2.0/testing-ios/#custom-ruby-versions) and specified in [`PRODUCTNAME/.ruby-version`](https://github.com/Raizlabs/ios-template/blob/master/PRODUCTNAME/.ruby-version).
+
+```bash
+# Install latest stable Ruby
+$ ruby-install ruby
+
+# Or install a specific version
+$ ruby-install ruby 2.5.1
+
+# Install version matching the project's `.ruby-version` file
+$ cd /path/to/ios-template
+$ RUBY_VERSION=$(cat PRODUCTNAME/.ruby-version) # e.g. "ruby-2.5.1"
+$ ruby-install ruby ${RUBY_VERSION##*-} # e.g. "2.5.1"
+
+# Refresh installed chruby Ruby versions
+$ source /usr/local/share/chruby/chruby.sh
+
+# Test that chruby is working
+$ chruby # lists available Ruby versions
+$ chruby ${RUBY_VERSION} # or `chruby ruby` for latest
+$ which ruby # should point to "~/.rubies/${RUBY_VERSION}/bin/ruby"
+```
+
+Install the `bundler` gem in the chruby version corresponding to `PRODUCTNAME/.ruby-version`. If you don't install bundler, the template generation will fail.
+
+```bash
+# change directory to PRODUCTNAME folder
+# chruby should now automatically switch you to the correct Ruby install
+$ cd /path/to/ios-template/PRODUCTNAME
+# or switch manually
+$ chruby $(cat .ruby-version)
+$ gem install bundler
+```
+
+Now you're ready to generate the new project from the cookiecutter template.
+
+### Installation
 
 1. [Install cookiecutter][cookiecutter] (`brew install cookiecutter` on
    macOS).
