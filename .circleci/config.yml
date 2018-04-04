@@ -25,9 +25,7 @@ jobs:
           key: 1-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
           paths:
             - vendor/bundle
-      # Restore CocoaPods
-      - restore_cache:
-          key: 1-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
+
       - run:
           name: Restore Pods
           command: |
@@ -38,26 +36,24 @@ jobs:
           paths:
             - "~/.cocoapods"
       # Python dependencies
-      # - run:
-      #     name: Pre-install Python CLI packages
-      #     # This is required since when we cache the output of pip, it doesn't also cache
-      #     # /usr/local/bin, where the CLI gets installed
-      #     command: pip install $(grep -i -e coverage -e fabric -e aws requirements.txt)
       - restore_cache:
-          key: v2-python-requirements-{{ checksum "requirements.txt" }}
+          key: v3-python-requirements-{{ checksum "requirements.txt" }}
       - run:
           name: Install Python dependencies
           command: pip install -r requirements.txt
       - save_cache:
-          key: v2-python-requirements-{{ checksum "requirements.txt" }}
+          key: v3-python-requirements-{{ checksum "requirements.txt" }}
           paths:
-            - "~/.cache/pip"
+            - "~/Library/Caches/pip"
             - "/usr/local/lib/python2.7/site-packages"
             - "/usr/local/lib/site-python"
             - "/usr/local/bin/cookiecutter"
       # - run:
       #     name: Install Cookiecutter
       #     command: pip install cookiecutter
+      # Restore CocoaPods
+      - restore_cache:
+          key: 2-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
       # Run tests
       - run:
           name: Test Cookiecutter Template
@@ -70,6 +66,11 @@ jobs:
             cd PRODUCTNAME/app
             bundle install
             bundle exec fastlane test
+      # Cache CocoaPods
+      - save_cache:
+          key: 2-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
+          paths:
+            - "~/.cocoapods"
 
 workflows:
   version: 2
