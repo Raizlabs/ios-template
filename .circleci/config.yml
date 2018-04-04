@@ -10,7 +10,17 @@ jobs:
       - 
     steps:
       - checkout
-      - run: cd PRODUCTNAME/app && bundle install && bundle exec fastlane test
+      - run:
+          name: cookiecutter
+          command: |
+            pip install cookiecutter
+            cookiecutter --no-input https://github.com/raizlabs/ios-template.git --checkout ${CIRCLE_BRANCH} 
+      - run:
+          name: Fastlane
+          command:  |
+            cd PRODUCTNAME/app
+            bundle install
+            bundle exec fastlane test
 
 dependencies:
   pre:
