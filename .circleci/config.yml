@@ -15,7 +15,7 @@ jobs:
             echo "ruby-2.4" > ~/.ruby-version
             chruby
       - restore_cache:
-          key: 3-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
+          key: 4-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
       - run:
           name: Restore Gems
           command: |
@@ -58,9 +58,9 @@ jobs:
             bundle exec fastlane test
       # Cache Gems
       - save_cache:
-          key: 3-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
+          key: 4-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
           paths:
-            - "${GEM_HOME}"
+            - "{{ $GEM_HOME }}"
       # Cache Pods
       - save_cache:
           key: 3-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
