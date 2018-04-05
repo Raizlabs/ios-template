@@ -43,19 +43,17 @@ jobs:
             - "/usr/local/bin/cookiecutter"
       # Run tests
       - run:
-          name: Test Template Itself
-          command: |
-            cd PRODUCTNAME/app
-            bundle install
-            bundle exec fastlane test
-      - run:
-          name: Test Template Output
+          name: Test Pre-generated Cookiecutter Template
           command: |
             echo Testing branch ${CIRCLE_BRANCH}
             cookiecutter --no-input ./
             cd ProjectName/app
             bundle install
             bundle exec fastlane test
+      - run:
+          name: Test Template Generation from PRODUCTNAME Directory
+          command: |
+            ./generate_template.sh
       # Cache Gems
       - save_cache:
           key: 4-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
