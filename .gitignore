@@ -1,3 +1,4 @@
 .DS_Store
 ProjectName/
 PRODUCTNAME/app/Pods/
+PRODUCTNAME/app/Podfile.lock
