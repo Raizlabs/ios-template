@@ -1,4 +1,8 @@
+#!/usr/bin/env bash
+
 # This is a shell script to transform the PRODUCTNAME directory into a cookie-cutter template
+
+set -e
 
 #This is the only lookup that is done on filenames
 LOOKUP="PRODUCTNAME"
@@ -9,6 +13,7 @@ find ./PRODUCTNAME -type d | while read FILE
 do
     NEWFILE=`echo $FILE | sed -e "s/${LOOKUP}/${EXPANDED}/g"`
     echo "mkdir -p \"$NEWFILE\""
+    mkdir -p "$NEWFILE"
 done
 
 # Copy the files over
@@ -16,6 +21,7 @@ find ./PRODUCTNAME -type f | while read FILE
 do
     NEWFILE=`echo $FILE | sed -e "s/${LOOKUP}/${EXPANDED}/g"`
     echo "cp \"$FILE\" \"$NEWFILE\""
+    cp "$FILE" "$NEWFILE"
 done
 
 # Do replacements
@@ -26,6 +32,7 @@ function replace {
         # Copy over incase the sed fails due to encoding
         #echo "echo \"$FILE\""
         echo "sed -e \"s/$1/$2/g\" \"$NEWFILE\" > t1 && mv t1 \"$NEWFILE\""
+        sed -e "s/$1/$2/g" "$NEWFILE" > t1 && mv t1 "$NEWFILE"
     done
 }
 
