@@ -19,7 +19,7 @@ jobs:
       - run:
           name: Restore Gems
           command: |
-           bundle check || bundle install --gemfile ./PRODUCTNAME/Gemfile
+           bundle check --gemfile ./PRODUCTNAME/Gemfile || bundle install --gemfile ./PRODUCTNAME/Gemfile
       # Download CocoaPods specs via HTTPS (faster than Git)
       - run:
           name: Install CocoaPods
