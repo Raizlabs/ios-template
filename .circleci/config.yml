@@ -53,7 +53,6 @@ jobs:
           command: |
             echo Testing branch ${CIRCLE_BRANCH}
             cookiecutter --no-input ./
-            cp -r PRODUCTNAME/app/Pods ProjectName/app/Pods
             cd ProjectName/app
             bundle install
             bundle exec fastlane test
