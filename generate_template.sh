@@ -48,9 +48,11 @@ function replace {
         if [ "${VERBOSE}" == "true" ] ; then
             echo "sed -e \"s/$1/$2/g\" \"$NEWFILE\" > t1 && mv t1 \"$NEWFILE\""
         fi
-        sed -e "s/$1/$2/g" "$NEWFILE" > t1 && mv t1 "$NEWFILE"
+        LC_ALL=C sed -e "s/$1/$2/g" "$NEWFILE" > t1 && mv t1 "$NEWFILE"
     done
 }
+
+
 
 replace "PRODUCTNAME" "{{ cookiecutter.project_name | replace(' ', '') }}"
 replace "ORGANIZATION" "{{ cookiecutter.company_name }}"
