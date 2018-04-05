@@ -68,6 +68,9 @@ jobs:
       shell: /bin/bash --login -o pipefail
       steps:
         - checkout
+        - run: 
+            name: Check Xcode Version
+            command: xcodebuild -version
         # Ruby dependencies
         - run:
             name: Set Ruby Version
