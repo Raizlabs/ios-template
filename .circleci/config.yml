@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  test:
+  test-xcode-9-2:
     environment:
       FASTLANE_SKIP_UPDATE_CHECK: 1
     macos:
@@ -64,9 +64,74 @@ jobs:
           key: 3-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
           paths:
             - "/Users/distiller/Library/Caches/CocoaPods"
+test-xcode-9-3:
+    environment:
+      FASTLANE_SKIP_UPDATE_CHECK: 1
+    macos:
+      xcode: "9.3.0"
+    shell: /bin/bash --login -o pipefail
+    steps:
+      - checkout
+      # Ruby dependencies
+      - run:
+          name: Set Ruby Version
+          command: |
+            echo "ruby-2.4" > ~/.ruby-version
+            chruby
+      - restore_cache:
+          key: 4-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
+      - run:
+          name: Restore Gems
+          command: |
+           bundle check --gemfile ./PRODUCTNAME/Gemfile || bundle install --gemfile ./PRODUCTNAME/Gemfile
+      # Download CocoaPods specs via HTTPS (faster than Git)
+      - run:
+          name: Install CocoaPods
+          command: |
+            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      # Restore Pods
+      - restore_cache:
+          key: 3-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
+      # Python dependencies
+      - restore_cache:
+          key: v3-python-requirements-{{ checksum "requirements.txt" }}
+      - run:
+          name: Install Python dependencies
+          command: pip install -r requirements.txt
+      - save_cache:
+          key: v3-python-requirements-{{ checksum "requirements.txt" }}
+          paths:
+            - "~/Library/Caches/pip"
+            - "/usr/local/lib/python2.7/site-packages"
+            - "/usr/local/lib/site-python"
+            - "/usr/local/bin/cookiecutter"
+      # Run tests
+      - run:
+          name: Test Pre-generated Cookiecutter Template
+          command: |
+            echo Testing branch ${CIRCLE_BRANCH}
+            cookiecutter --no-input ./
+            cd ProjectName/app
+            bundle install
+            bundle exec fastlane test
+      - run:
+          name: Test Template Generation from PRODUCTNAME Directory
+          command: |
+            ./generate_template.sh
+      # Cache Gems
+      - save_cache:
+          key: 4-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
+          paths:
+            - "{{ $GEM_HOME }}"
+      # Cache Pods
+      - save_cache:
+          key: 3-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
+          paths:
+            - "/Users/distiller/Library/Caches/CocoaPods"
 
 workflows:
   version: 2
-  test:
+  test-all:
     jobs:
-      - test
+      - test-xcode-9-2
+      - test-xcode-9-3
