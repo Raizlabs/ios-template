@@ -39,12 +39,31 @@ Inspired by [thoughtbot]/[ios-template]
 [hockey]: hooks/post_gen_project.sh
 [swiftgen]: https://github.com/SwiftGen/SwiftGen
 
-## Contributing to the template
+## Contributing
 
-### Managing an XCode Project Template
-If you place a cookie cutter expansion in a `.pbxproj` file, Xcode will no longer open the project file. To simplify managing the Xcode project, I have a more primitive expansion script in `generate_template.sh` that will replace a smaller set of words with cookiecutter variables. In particular, `PRODUCTNAME` is expanded to `{{ cookiecutter.project_name }}`. Using this simpler form of expansion allows the project in the `PRODUCTNAME` directory to continue to work in Xcode, and lets you manage your template just like any other Xcode project. When you are done with modifications, run `generate_template.sh | sh`.
+### Regenerating the Template
+
+⚠️ **Do not** make changes to the `{{ cookiecutter.project_name | replace(' ', '') }}` directory directly! You must first make your changes in the `PRODUCTNAME` folder and then run the `generate_template.sh` script. 
+
+If you place a cookie cutter expansion in a `.pbxproj` file, Xcode will no longer open the project file. To simplify managing the Xcode project, I have a more primitive expansion script in `generate_template.sh` that will replace a smaller set of words with cookiecutter variables. In particular, `PRODUCTNAME` is expanded to `{{ cookiecutter.project_name }}`. Using this simpler form of expansion allows the project in the `PRODUCTNAME` directory to continue to work in Xcode, and lets you manage your template just like any other Xcode project. 
+
+**Every time** you make changes to the PRODUCTNAME folder, you must run `generate_template.sh`:
+
+```bash
+$ ./generate_template.sh
+```
+
+This script will regenerate the template from scratch, and then verify that it works by running cookiecutter on it, and building/testing the result.
 
 If you are looking to do specific Xcode project modifications, I would recommend using `.xcconfig` files, and placing any expansion in those files. If you are looking to expand variables outside of the project file, you can use cookie cutters `{{ cookiecutter.whatever }}` variables directly.
+
+#### Testing Your Changes
+
+```bash
+cookiecutter --no-input --overwrite-if-exists ./
+```
+
+After running the `generate_template.sh` script, you can manually run `cookiecutter` and examine the results in the `ProjectName` folder.
 
 ## Usage
 
