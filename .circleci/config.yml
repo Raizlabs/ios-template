@@ -75,7 +75,8 @@ jobs:
           name: Deploy template to ios-template-output repo
           command: |
             cd ProjectName
-            mv app/Pods ../Pods
+            rm -rf app/Pods
+            cp -r ../PRODUCTNAME/app/Pods app/Pods
             git add -A
             export COMMIT_MSG="\"Output of https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/commit/$CIRCLE_SHA1\""
             git commit -m $COMMIT_MSG
@@ -160,7 +161,8 @@ jobs:
           name: Deploy template to ios-template-output repo
           command: |
             cd ProjectName
-            mv app/Pods ../Pods
+            rm -rf app/Pods
+            cp -r ../PRODUCTNAME/app/Pods app/Pods
             git add -A
             export COMMIT_MSG="\"Output of https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/commit/$CIRCLE_SHA1\""
             git commit -m $COMMIT_MSG
