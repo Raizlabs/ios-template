@@ -78,7 +78,7 @@ jobs:
             rm -rf app/Pods
             cp -r ../PRODUCTNAME/app/Pods app/Pods
             git add -A
-            export COMMIT_MSG="\"Output of https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/commit/$CIRCLE_SHA1\""
+            export COMMIT_MSG="\"https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/commit/$CIRCLE_SHA1\""
             git commit -m $COMMIT_MSG
             git remote add output git@github.com:Raizlabs/ios-template-output.git
             export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa_334f9381100e189586a892e6ebee3992'
@@ -164,7 +164,7 @@ jobs:
             rm -rf app/Pods
             cp -r ../PRODUCTNAME/app/Pods app/Pods
             git add -A
-            export COMMIT_MSG="\"Output of https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/commit/$CIRCLE_SHA1\""
+            export COMMIT_MSG="\"https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/commit/$CIRCLE_SHA1\""
             git commit -m $COMMIT_MSG
             git remote add output git@github.com:Raizlabs/ios-template-output.git
             export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa_334f9381100e189586a892e6ebee3992'
