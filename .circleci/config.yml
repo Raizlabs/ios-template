@@ -79,7 +79,7 @@ jobs:
             git add -A
             git commit -m 'Test commit'
             git remote add output git@github.com:Raizlabs/ios-template-output.git
-            git config core.sshCommand "ssh -i ~/.ssh/id_rsa_334f9381100e189586a892e6ebee3992 -F /dev/null"
+            export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa_334f9381100e189586a892e6ebee3992'
             git push -u output master --force
   test-xcode-9-3:
     macos:
@@ -163,7 +163,7 @@ jobs:
             git add -A
             git commit -m 'Test commit'
             git remote add output git@github.com:Raizlabs/ios-template-output.
-            git config core.sshCommand "ssh -i ~/.ssh/id_rsa_334f9381100e189586a892e6ebee3992 -F /dev/null"
+            export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa_334f9381100e189586a892e6ebee3992'
             git push -u output master --force
 workflows:
   version: 2
