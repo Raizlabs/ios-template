@@ -65,10 +65,14 @@ jobs:
           key: 3-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
           paths:
             - "/Users/distiller/Library/Caches/CocoaPods"
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ProjectName
+      - run:
+          name: Deploy template to ios-template-output repo
+          command: |
+            cd ProjectName
+            git add -A
+            git commit -m 'Test commit'
+            git remote add output git@github.com:Raizlabs/ios-template-output.git
+            git push -u output master --force
   test-xcode-9-3:
     macos:
       xcode: "9.3.0"
@@ -137,31 +141,17 @@ jobs:
           key: 3-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
           paths:
             - "/Users/distiller/Library/Caches/CocoaPods"
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ProjectName
-  deploy-output-repo:
-    macos:
-        xcode: "9.2.0"
-    shell: /bin/bash --login -o pipefail
-    steps:
-      # The purpose of this job is to make sure the inner CircleCI template works
       - run:
-          name: Deploy to ios-template-output
+          name: Deploy template to ios-template-output repo
           command: |
             cd ProjectName
             git add -A
             git commit -m 'Test commit'
             git remote add output git@github.com:Raizlabs/ios-template-output.git
             git push -u output master --force
-
 workflows:
   version: 2
   test-all:
     jobs:
       - test-xcode-9-2
       # - test-xcode-9-3
-      - deploy-output-repo:
-          requires:
-            - test-xcode-9-2
