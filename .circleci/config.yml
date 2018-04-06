@@ -77,10 +77,10 @@ jobs:
             cd ProjectName
             rm -rf app/Pods
             git add -A
-            git commit -m 'Test commit'
+            git commit -m 'Output of ${CIRCLE_REPOSITORY_URL}/commit/${CIRCLE_SHA1}'
             git remote add output git@github.com:Raizlabs/ios-template-output.git
             export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa_334f9381100e189586a892e6ebee3992'
-            git push -u output master --force
+            git push -u output master:${CIRCLE_BRANCH} --force
   test-xcode-9-3:
     macos:
       xcode: "9.3.0"
@@ -161,10 +161,10 @@ jobs:
             cd ProjectName
             rm -rf app/Pods
             git add -A
-            git commit -m 'Test commit'
-            git remote add output git@github.com:Raizlabs/ios-template-output.
+            git commit -m 'Output of ${CIRCLE_REPOSITORY_URL}/commit/${CIRCLE_SHA1}'
+            git remote add output git@github.com:Raizlabs/ios-template-output.git
             export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa_334f9381100e189586a892e6ebee3992'
-            git push -u output master --force
+            git push -u output master:${CIRCLE_BRANCH} --force
 workflows:
   version: 2
   test-all:
