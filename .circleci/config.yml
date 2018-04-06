@@ -135,17 +135,17 @@ jobs:
   deploy-output-repo:
     macos:
         xcode: "9.3.0"
-      shell: /bin/bash --login -o pipefail
-      steps:
-        # The purpose of this job is to make sure the inner CircleCI template works
-        - run:
-            name: Deploy to ios-template-output
-            command: |
-              cd ProjectName
-              git add -A
-              git commit -m 'Test commit'
-              git remote add output git@github.com:Raizlabs/ios-template-output.git
-              git push -u output master --force
+    shell: /bin/bash --login -o pipefail
+    steps:
+      # The purpose of this job is to make sure the inner CircleCI template works
+      - run:
+          name: Deploy to ios-template-output
+          command: |
+            cd ProjectName
+            git add -A
+            git commit -m 'Test commit'
+            git remote add output git@github.com:Raizlabs/ios-template-output.git
+            git push -u output master --force
 
 workflows:
   version: 2
