@@ -51,7 +51,7 @@ jobs:
       - run:
           name: Test Template Generation from PRODUCTNAME Directory
           command: |
-            ./generate_template.sh
+            KEEP_COOKIECUTTER_OUTPUT=true ./generate_template.sh
       # Cache Gems
       - save_cache:
           key: 4-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
@@ -62,6 +62,10 @@ jobs:
           key: 3-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
           paths:
             - "/Users/distiller/Library/Caches/CocoaPods"
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - ProjectName
   test-xcode-9-3:
     macos:
       xcode: "9.3.0"
@@ -117,11 +121,6 @@ jobs:
           name: Test Template Generation from PRODUCTNAME Directory
           command: |
             KEEP_COOKIECUTTER_OUTPUT=true ./generate_template.sh
-      - persist_to_workspace:
-          root: workspace
-          paths:
-            - ProjectName
-
       # Cache Gems
       - save_cache:
           key: 4-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
@@ -132,6 +131,10 @@ jobs:
           key: 3-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
           paths:
             - "/Users/distiller/Library/Caches/CocoaPods"
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - ProjectName
   deploy-output-repo:
     macos:
         xcode: "9.2.0"
@@ -152,7 +155,7 @@ workflows:
   test-all:
     jobs:
       - test-xcode-9-2
-      - test-xcode-9-3
+      # - test-xcode-9-3
       - deploy-output-repo:
           requires:
             - test-xcode-9-2
