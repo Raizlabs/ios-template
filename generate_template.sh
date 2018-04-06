@@ -15,27 +15,50 @@ echo "Regenerating cookiecutter template from PRODUCTNAME directory contents..."
 LOOKUP="PRODUCTNAME"
 EXPANDED="{{ cookiecutter.project_name | replace(' ', '') }}"
 
+if [ ! -z "$OUTPUT_DIR" ] ; then
+    echo "Using output directory: $OUTPUT_DIR"
+    mkdir $OUTPUT_DIR
+    cp -rf "$LOOKUP" "$OUTPUT_DIR/$LOOKUP"
+    cp cookiecutter.json "$OUTPUT_DIR/"
+    if [ "${SKIP_REGENERATION}" == "true" ] ; then
+        cp -rf "$EXPANDED" "$OUTPUT_DIR/$EXPANDED" 
+    fi
+    cd $OUTPUT_DIR
+fi
+
 # Clear out any left over artifacts from last regeneration
-rm -rf "${EXPANDED}/"
+if [ "${SKIP_REGENERATION}" != "true" ] ; then
+    echo "Deleting old template output..."
+    rm -rf "${EXPANDED}/"
+    echo "Regenerating template..."
+else
+    echo "Performing dry run on existing template output..."
+fi
 
 # Make the tree
 find ./PRODUCTNAME -type d | while read FILE
 do
     NEWFILE=`echo $FILE | sed -e "s/${LOOKUP}/${EXPANDED}/g"`
+    MKDIR_CMD="mkdir -p \"$NEWFILE\""
     if [ "${VERBOSE}" == "true" ] ; then
-        echo "mkdir -p \"$NEWFILE\""
+        echo "${MKDIR_CMD}"
     fi
-    mkdir -p "$NEWFILE"
+    if [ "${SKIP_REGENERATION}" != "true" ] ; then
+        eval $MKDIR_CMD
+    fi
 done
 
 # Copy the files over
 find ./PRODUCTNAME -type f | while read FILE
 do
     NEWFILE=`echo $FILE | sed -e "s/${LOOKUP}/${EXPANDED}/g"`
+    COPY_CMD="cp \"$FILE\" \"$NEWFILE\""
     if [ "${VERBOSE}" == "true" ] ; then
-        echo "cp \"$FILE\" \"$NEWFILE\""
+        echo "${COPY_CMD}"
     fi
-    cp "$FILE" "$NEWFILE"
+    if [ "${SKIP_REGENERATION}" != "true" ] ; then
+        eval $COPY_CMD
+    fi
 done
 
 # Do replacements
@@ -43,16 +66,17 @@ function replace {
     grep -rl $1 ./PRODUCTNAME | while read FILE
     do 
     NEWFILE=`echo $FILE | sed -e "s/${LOOKUP}/${EXPANDED}/g"`
+        SED_CMD="LC_ALL=C sed -e \"s/$1/$2/g\" \"$NEWFILE\" > t1 && mv t1 \"$NEWFILE\""
         # Copy over incase the sed fails due to encoding
         #echo "echo \"$FILE\""
         if [ "${VERBOSE}" == "true" ] ; then
-            echo "sed -e \"s/$1/$2/g\" \"$NEWFILE\" > t1 && mv t1 \"$NEWFILE\""
+            echo "${SED_CMD}"
         fi
-        LC_ALL=C sed -e "s/$1/$2/g" "$NEWFILE" > t1 && mv t1 "$NEWFILE"
+        if [ "${SKIP_REGENERATION}" != "true" ] ; then
+            eval $SED_CMD
+        fi        
     done
 }
-
-
 
 replace "PRODUCTNAME" "{{ cookiecutter.project_name | replace(' ', '') }}"
 replace "ORGANIZATION" "{{ cookiecutter.company_name }}"
@@ -60,12 +84,15 @@ replace "LEADDEVELOPER" "{{ cookiecutter.lead_dev }}"
 replace "LEADEMAIL" "{{ cookiecutter.lead_email }}"
 replace "com.raizlabs.PRODUCTNAME" "{{ cookiecutter.bundle_identifier }}"
 
-# Delete files that we don't want to include in the template
-rm -rf "${EXPANDED}/app/Podfile.lock"
-rm -rf "${EXPANDED}/app/Pods"
-rm -rf "${EXPANDED}/app/${EXPANDED}.xcworkspace"
-
-echo "Template generation complete."
+if [ "${SKIP_REGENERATION}" == "true" ] ; then
+    echo "Dry run complete."
+else
+    # Delete files that we don't want to include in the template
+    rm -rf "${EXPANDED}/app/Podfile.lock"
+    rm -rf "${EXPANDED}/app/Pods"
+    rm -rf "${EXPANDED}/app/${EXPANDED}.xcworkspace"
+    echo "Template generation complete."
+fi
 
 # Run Tests
 
@@ -81,9 +108,14 @@ TEST_OUTPUT_DIR="ProjectName"
 cookiecutter --no-input --overwrite-if-exists ./
 pushd "$TEST_OUTPUT_DIR/app"
     bundle install
+    bundle exec pod install
     bundle exec fastlane test
 popd
 
-rm -rf "${TEST_OUTPUT_DIR}"
+if [ "${KEEP_COOKIECUTTER_OUTPUT}" == "true" ] ; then
+    echo "cookiecutter output kept in ${TEST_OUTPUT_DIR}"
+else
+    rm -rf "${TEST_OUTPUT_DIR}"
+fi
 
 echo "Tests complete."
