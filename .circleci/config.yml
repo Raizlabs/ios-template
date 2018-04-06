@@ -77,7 +77,8 @@ jobs:
             cd ProjectName
             git add app/Pods
             git add -A
-            git commit -m 'Output of ${CIRCLE_REPOSITORY_URL}/commit/${CIRCLE_SHA1}'
+            export COMMIT_MSG="\"Output of https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/commit/$CIRCLE_SHA1\""
+            git commit -m $COMMIT_MSG
             git remote add output git@github.com:Raizlabs/ios-template-output.git
             export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa_334f9381100e189586a892e6ebee3992'
             git push -u output master:${CIRCLE_BRANCH} --force
@@ -161,7 +162,8 @@ jobs:
             cd ProjectName
             git add app/Pods
             git add -A
-            git commit -m 'Output of ${CIRCLE_REPOSITORY_URL}/commit/${CIRCLE_SHA1}'
+            export COMMIT_MSG="\"Output of https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/commit/$CIRCLE_SHA1\""
+            git commit -m $COMMIT_MSG
             git remote add output git@github.com:Raizlabs/ios-template-output.git
             export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa_334f9381100e189586a892e6ebee3992'
             git push -u output master:${CIRCLE_BRANCH} --force
