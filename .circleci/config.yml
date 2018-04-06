@@ -134,7 +134,7 @@ jobs:
             - "/Users/distiller/Library/Caches/CocoaPods"
   deploy-output-repo:
     macos:
-        xcode: "9.3.0"
+        xcode: "9.2.0"
     shell: /bin/bash --login -o pipefail
     steps:
       # The purpose of this job is to make sure the inner CircleCI template works
@@ -155,4 +155,4 @@ workflows:
       - test-xcode-9-3
       - deploy-output-repo:
           requires:
-            - test-xcode-9-3
+            - test-xcode-9-2
