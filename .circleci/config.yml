@@ -5,6 +5,10 @@ jobs:
       xcode: "9.2.0"
     shell: /bin/bash --login -eo pipefail
     steps:
+      # Adds SSH key for deploying result to ios-template-output repo
+      - add_ssh_keys:
+          fingerprints:
+            - "33:4f:93:81:10:0e:18:95:86:a8:92:e6:eb:ee:39:92"
       - checkout
       # Ruby dependencies
       - run:
@@ -75,12 +79,17 @@ jobs:
             git add -A
             git commit -m 'Test commit'
             git remote add output git@github.com:Raizlabs/ios-template-output.git
+            # git config core.sshCommand "ssh -i ~/.ssh/id_rsa_example -F /dev/null"
             git push -u output master --force
   test-xcode-9-3:
     macos:
       xcode: "9.3.0"
     shell: /bin/bash --login -eo pipefail
     steps:
+      # Adds SSH key for deploying result to ios-template-output repo
+      - add_ssh_keys:
+          fingerprints:
+            - "33:4f:93:81:10:0e:18:95:86:a8:92:e6:eb:ee:39:92"
       - checkout
       - run: 
           name: Check Xcode Version
