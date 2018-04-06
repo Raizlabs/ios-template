@@ -75,7 +75,7 @@ jobs:
           name: Deploy template to ios-template-output repo
           command: |
             cd ProjectName
-            rm -rf app/Pods
+            git add app/Pods
             git add -A
             git commit -m 'Output of ${CIRCLE_REPOSITORY_URL}/commit/${CIRCLE_SHA1}'
             git remote add output git@github.com:Raizlabs/ios-template-output.git
@@ -159,7 +159,7 @@ jobs:
           name: Deploy template to ios-template-output repo
           command: |
             cd ProjectName
-            rm -rf app/Pods
+            git add app/Pods
             git add -A
             git commit -m 'Output of ${CIRCLE_REPOSITORY_URL}/commit/${CIRCLE_SHA1}'
             git remote add output git@github.com:Raizlabs/ios-template-output.git
