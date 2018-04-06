@@ -52,6 +52,9 @@ jobs:
           name: Test Template Generation from PRODUCTNAME Directory
           command: |
             KEEP_COOKIECUTTER_OUTPUT=true ./generate_template.sh
+      - run:
+          name: Verify cookiecutter matches PRODUCTNAME
+          command: test `git status -s \{\{\ cookiecutter.project_name\ \|\ replace\(\'\ \'\,\ \'\'\)\ \}\}/ | wc -l` -eq 0
       # Cache Gems
       - save_cache:
           key: 4-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
@@ -121,6 +124,9 @@ jobs:
           name: Test Template Generation from PRODUCTNAME Directory
           command: |
             KEEP_COOKIECUTTER_OUTPUT=true ./generate_template.sh
+      - run:
+          name: Verify cookiecutter matches PRODUCTNAME
+          command: test `git status -s \{\{\ cookiecutter.project_name\ \|\ replace\(\'\ \'\,\ \'\'\)\ \}\}/ | wc -l` -eq 0
       # Cache Gems
       - save_cache:
           key: 4-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
