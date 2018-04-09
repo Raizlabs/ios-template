@@ -169,9 +169,17 @@ jobs:
             git remote add output git@github.com:Raizlabs/ios-template-output.git
             export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa_334f9381100e189586a892e6ebee3992'
             git push -u output master:${CIRCLE_BRANCH} --force
+  danger:
+    docker:
+      - image: dantoml/danger:latest
+    steps:
+      - checkout
+      - run: danger
+
 workflows:
   version: 2
   test-all:
     jobs:
       - test-xcode-9-2
+      - danger
       # - test-xcode-9-3
