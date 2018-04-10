@@ -59,10 +59,32 @@ jobs:
       - run: cd app && bundle exec fastlane beta
       - store_artifacts:
           path: "${FL_OUTPUT_DIR}/{{ cookiecutter.project_name }}.ipa"
+  danger:
+    macos:
+      xcode: "9.3.0"
+    shell: /bin/bash --login -eo pipefail
+    steps:
+      - checkout
+            # Cache Gems
+      - restore_cache:
+          key: 1-top-gems-{{ "{{" }} checksum "Gemfile.lock" {{ "}}" }}
+      - run:
+          name: Restore Gems
+          command: |
+           bundle check --gemfile Gemfile || bundle install --gemfile Gemfile
+      - save_cache:
+          key: 1-top-gems-{{ "{{" }} checksum "Gemfile.lock" {{ "}}" }}
+          paths:
+            - "{{ "{{" }} $GEM_HOME {{ "}}" }}"
+      - run:
+          name: Danger
+          command: |
+            bundle exec danger
 workflows:
   version: 2
   integration:
     jobs:
+      - danger
       - test:
           filters:
             tags:
