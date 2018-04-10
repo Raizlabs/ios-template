@@ -14,9 +14,19 @@ if github.pr_body.length < 3 && git.lines_of_code > 10
   warn("Please provide a summary in the Pull Request description")
 end
 
+src_root = File.expand_path('../app', __FILE__)
+
+xcov.report(
+  workspace: "#{src_root}/{{ cookiecutter.project_name | replace(' ', '') }}.xcworkspace",
+  scheme: "debug-{{ cookiecutter.project_name | replace(' ', '') }}",
+  output_directory: "#{ENV['RZ_TEST_REPORTS']}",
+   # For some reason coverage is on the "develop-" app target instead of "debug-"
+  include_targets: "develop-{{ cookiecutter.project_name | replace(' ', '') }}.app, Services.framework",
+  ignore_file_path: "#{src_root}/fastlane/.xcovignore"
+)  
+
 ## ** SWIFT LINT ***
 # Use the SwiftLint included via CocoaPods
-src_root = File.expand_path('../app', __FILE__)
 swiftlint.binary_path = "#{src_root}/Pods/SwiftLint/swiftlint"
 swiftlint.config_file = "#{src_root}/.swiftlint.yml"
 
