@@ -9,7 +9,7 @@ jobs:
       # Ruby dependencies
       - run:
       - restore_cache:
-          key: 4-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
+          key: 4-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}-{{ checksum "Gemfile.lock" }}
       - run:
           name: Restore Gems
           command: |
@@ -58,7 +58,7 @@ jobs:
           command: test `git status -s \{\{\ cookiecutter.project_name\ \|\ replace\(\'\ \'\,\ \'\'\)\ \}\}/ | wc -l` -eq 0
       # Cache Gems
       - save_cache:
-          key: 4-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}
+          key: 4-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}-{{ checksum "Gemfile.lock" }}
           paths:
             - "{{ $GEM_HOME }}"
       # Cache Pods
