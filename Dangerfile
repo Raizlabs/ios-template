@@ -21,8 +21,9 @@ xcov.report(
   scheme: "debug-PRODUCTNAME",
   output_directory: "#{ENV['RZ_TEST_REPORTS']}",
    # For some reason coverage is on the "develop-" app target instead of "debug-"
-  include_targets: "develop-PRODUCTNAME.app, Services.framework"
-)  
+  include_targets: "develop-PRODUCTNAME.app, Services.framework",
+  ignore_file_path: "#{src_root}/fastlane/.xcovignore"
+)
 
 ## ** SWIFT LINT ***
 # Use the SwiftLint included via CocoaPods
