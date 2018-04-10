@@ -12,17 +12,16 @@ warn("Big PR") if git.lines_of_code > 500
 # Mainly to encourage writing up some reasoning about the PR, rather than just leaving a title.
 if github.pr_body.length < 3 && git.lines_of_code > 10
   warn("Please provide a summary in the Pull Request description")
+end
 
-src_root = File.expand_path('../ProjectName/app', __FILE__)
+src_root = File.expand_path('../PRODUCTNAME/app', __FILE__)
 
 xcov.report(
-  workspace: "#{src_root}/ProjectName.xcworkspace",
-  scheme: "#{src_root}/debug-ProjectName",
+  workspace: "#{src_root}/PRODUCTNAME.xcworkspace",
+  scheme: "debug-PRODUCTNAME",
   output_directory: "#{ENV['RZ_TEST_REPORTS']}",
-   # This is needed for Xcode 9.2 and below
-  legacy_support: "true",
    # For some reason coverage is on the "develop-" app target instead of "debug-"
-  include_targets: "develop-ProjectName.app, Services.framework"
+  include_targets: "develop-PRODUCTNAME.app, Services.framework"
 )  
 
 ## ** SWIFT LINT ***

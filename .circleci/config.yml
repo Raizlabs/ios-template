@@ -13,6 +13,13 @@ jobs:
           command: |
             bundle check --gemfile ./PRODUCTNAME/Gemfile || bundle install --gemfile ./PRODUCTNAME/Gemfile
             bundle check --gemfile Gemfile || bundle install --gemfile Gemfile
+      - run:
+          name: Danger
+          command: |
+            cd PRODUCTNAME/app
+            bundle exec fastlane test
+            cd ../../
+            bundle exec danger
       # Download CocoaPods specs via HTTPS (faster than Git)
       - run:
           name: Install CocoaPods
@@ -43,10 +50,6 @@ jobs:
             cd ProjectName/app
             bundle install
             bundle exec fastlane test
-      - run:
-          name: Danger
-          command: |
-            bundle exec danger
       - run:
           name: Test Template Generation from PRODUCTNAME Directory
           command: |
