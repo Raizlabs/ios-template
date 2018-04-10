@@ -170,8 +170,9 @@ jobs:
             export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_rsa_334f9381100e189586a892e6ebee3992'
             git push -u output master:${CIRCLE_BRANCH} --force
   danger:
-    docker:
-      - image: dantoml/danger:latest
+    macos:
+      xcode: "9.3.0"
+    shell: /bin/bash --login -eo pipefail
     steps:
       - checkout
             # Cache Gems
