@@ -14,9 +14,20 @@ if github.pr_body.length < 3 && git.lines_of_code > 10
   warn("Please provide a summary in the Pull Request description")
 end
 
+src_root = File.expand_path('../app', __FILE__)
+
+xcov.report(
+  workspace: "#{src_root}/PRODUCTNAME.xcworkspace",
+  scheme: "#{src_root}/debug-PRODUCTNAME",
+  output_directory: "#{ENV['RZ_TEST_REPORTS']}",
+   # This is needed for Xcode 9.2 and below
+  legacy_support: "true",
+   # For some reason coverage is on the "develop-" app target instead of "debug-"
+  include_targets: "develop-PRODUCTNAME.app, Services.framework"
+)  
+
 ## ** SWIFT LINT ***
 # Use the SwiftLint included via CocoaPods
-src_root = File.expand_path('../app', __FILE__)
 swiftlint.binary_path = "#{src_root}/Pods/SwiftLint/swiftlint"
 swiftlint.config_file = "#{src_root}/.swiftlint.yml"
 
