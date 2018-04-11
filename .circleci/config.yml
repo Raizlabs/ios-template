@@ -7,13 +7,30 @@ jobs:
     working_directory: /Users/distiller/project
     steps:
       - checkout
+      # Setup Ruby dependencies
       - restore_cache:
           key: 5-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}-{{ checksum "Gemfile.lock" }}
       - run:
-          name: Restore Gems
+          name: Restore Ruby Gems
           command: |
             bundle check --gemfile ./PRODUCTNAME/Gemfile || bundle install --gemfile ./PRODUCTNAME/Gemfile
             bundle check --gemfile Gemfile || bundle install --gemfile Gemfile
+      # Setup Python dependencies
+      - restore_cache:
+          key: 5-python-requirements-{{ checksum "requirements.txt" }}
+      - run:
+          name: Restore Python Packages
+          command: |
+            virtualenv -p python3 .venv
+            source .venv/bin/activate
+            pip install -r requirements.txt
+      - save_cache:
+          key: 5-python-requirements-{{ checksum "requirements.txt" }}
+          paths:
+            - "/Users/distiller/project/.venv"
+      # Restore Pods cache
+      - restore_cache:
+          key: 3-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
       - run:
           name: Code Coverage
           command: |
@@ -33,22 +50,6 @@ jobs:
           name: Install CocoaPods
           command: |
             curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
-      # Restore Pods
-      - restore_cache:
-          key: 3-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
-      # Python dependencies
-      - restore_cache:
-          key: v3-python-requirements-{{ checksum "requirements.txt" }}
-      - run:
-          name: Install Python dependencies
-          command: pip install -r requirements.txt
-      - save_cache:
-          key: v3-python-requirements-{{ checksum "requirements.txt" }}
-          paths:
-            - "~/Library/Caches/pip"
-            - "/usr/local/lib/python2.7/site-packages"
-            - "/usr/local/lib/site-python"
-            - "/usr/local/bin/cookiecutter"
       # Run tests
       - run:
           name: Test Pre-generated Cookiecutter Template
@@ -68,6 +69,7 @@ jobs:
       # Cache Gems
       - save_cache:
           key: 5-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}-{{ checksum "Gemfile.lock" }}
+          # The path to the gems may change if .ruby-version file is changed.
           paths:
             - "/Users/distiller/.gem/ruby/2.4.0"
       # Cache Pods

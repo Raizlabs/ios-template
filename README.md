@@ -84,6 +84,26 @@ After running the `generate_template.sh` script, you can manually run `cookiecut
 
 ### Prerequisites
 
+#### Installing Cookiecutter in a Python Virtual Environment
+
+Install Python 3 using Homebrew.
+
+```bash
+$ brew install python3
+```
+
+Create Python 3 virtual environment `.venv`, activate it, and then install the dependencies. To deactivate use `deactivate`.
+
+```bash
+$ virtualenv -p python3 .venv
+$ source .venv/bin/activate
+# you'll notice your terminal is now prefixed with the virtualenv name
+(.venv) $ pip install -r requirements.txt
+(.venv) $ cookiecutter --help
+```
+
+To use `cookiecutter` you'll need to activate the virtualenv, however you can also install cookiecutter globally, but it may not match the version used by the template.
+
 #### Installing Ruby
 
 Install `chruby` to manage your Ruby versions. 
