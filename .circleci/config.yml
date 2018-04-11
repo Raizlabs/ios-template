@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Restore Python Packages
           command: |
-            virtualenv -p python3 .venv
+            [[ -d .venv ]] || virtualenv .venv
             source .venv/bin/activate
             pip install -r requirements.txt
       - save_cache:
@@ -54,6 +54,7 @@ jobs:
       - run:
           name: Test Pre-generated Cookiecutter Template
           command: |
+            source .venv/bin/activate
             echo Testing branch ${CIRCLE_BRANCH}
             cookiecutter --no-input ./
             cd ProjectName/app
@@ -62,6 +63,7 @@ jobs:
       - run:
           name: Test Template Generation from PRODUCTNAME Directory
           command: |
+            source .venv/bin/activate
             KEEP_COOKIECUTTER_OUTPUT=true ./generate_template.sh
       - run:
           name: Verify cookiecutter matches PRODUCTNAME

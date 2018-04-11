@@ -95,14 +95,20 @@ $ brew install python3
 Create Python 3 virtual environment `.venv`, activate it, and then install the dependencies. To deactivate use `deactivate`.
 
 ```bash
-$ virtualenv -p python3 .venv
+$ python3 -m venv .venv
 $ source .venv/bin/activate
 # you'll notice your terminal is now prefixed with the virtualenv name
 (.venv) $ pip install -r requirements.txt
 (.venv) $ cookiecutter --help
 ```
 
-To use `cookiecutter` you'll need to activate the virtualenv, however you can also install cookiecutter globally, but it may not match the version used by the template.
+Before using `cookiecutter` you'll need to activate the virtualenv. You can also install cookiecutter globally, but it may not match the version used by the template.
+
+```bash
+$ cd /path/to/ios-template
+$ source .venv/bin/activate
+(.venv) $ cookiecutter .
+```
 
 #### Installing Ruby
 
