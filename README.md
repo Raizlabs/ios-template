@@ -22,6 +22,7 @@ Pushing updates to this repository triggers CircleCI to build a blank template a
  - Option to configure [Hockey][hockey] apps automatically.
  - [Default Fastfile][fastfile] with test, develop, sprint, beta and release lanes and slack notifications.
  - Configuration for [CircleCI][CircleCI] with auto-triggered builds for merges to develop or tags prefixed with sprint, beta or release.
+ - [Danger](https://danger.systems) to automatically enforce conventions on every pull request.
  - [APIClient Stub][apiclient] with functional OAuth implementation and APIEndpoint protocol.
  - [SwiftGen][SwiftGen] configured to generate localized strings and image enums.
  - Default [swiftlint][swiftlint] rules to help enforce code style standards across projects.
@@ -167,6 +168,10 @@ Now you're ready to generate the new project from the cookiecutter template.
 ### OAuth Endpoint
 
 ### APIClient 
+
+### Danger
+
+To [set up Danger](http://danger.systems/guides/getting_started.html) on CircleCI you'll need to add a `DANGER_GITHUB_API_TOKEN` to the test environment. There are two bots already available: for open source projects use the open source "OSS" bot, and for closed source projects use the "Private" bot.
 
 ## Cookie Cutter
 Cookie Cutter is a python project for templating files and directories. Cookie cutter will ask a series of questions as defined in `cookiecutter.json` and then run the expansion on the contained files and directory names, and file contents. Anything with `{{ cookiecutter.variable }}` is expanded when the template is expanded. This is a powerful primitive but has some complications with Xcode
