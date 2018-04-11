@@ -4,21 +4,29 @@ jobs:
     macos:
       xcode: "9.2.0"
     shell: /bin/bash --login -eo pipefail
+    working_directory: /Users/distiller/project
     steps:
       - checkout
       - restore_cache:
-          key: 4-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}-{{ checksum "Gemfile.lock" }}
+          key: 5-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}-{{ checksum "Gemfile.lock" }}
       - run:
           name: Restore Gems
           command: |
             bundle check --gemfile ./PRODUCTNAME/Gemfile || bundle install --gemfile ./PRODUCTNAME/Gemfile
             bundle check --gemfile Gemfile || bundle install --gemfile Gemfile
       - run:
-          name: Danger
+          name: Code Coverage
           command: |
             cd PRODUCTNAME/app
             bundle exec fastlane test
-            cd ../../
+            rm build/develop-PRODUCTNAME-debug-PRODUCTNAME.log
+      # Store xcov Code Coverage HTML report artifact 
+      - store_artifacts:
+          path: /Users/distiller/project/PRODUCTNAME/app/build/
+          destination: code-coverage
+      - run:
+          name: Danger
+          command: |
             bundle exec danger
       # Download CocoaPods specs via HTTPS (faster than Git)
       - run:
@@ -59,9 +67,9 @@ jobs:
           command: test `git status -s \{\{\ cookiecutter.project_name\ \|\ replace\(\'\ \'\,\ \'\'\)\ \}\}/ | wc -l` -eq 0
       # Cache Gems
       - save_cache:
-          key: 4-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}-{{ checksum "Gemfile.lock" }}
+          key: 5-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}-{{ checksum "Gemfile.lock" }}
           paths:
-            - "{{ $GEM_HOME }}"
+            - "/Users/distiller/.gem/ruby/2.4.0"
       # Cache Pods
       - save_cache:
           key: 3-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
