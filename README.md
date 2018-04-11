@@ -195,9 +195,17 @@ Now you're ready to generate the new project from the cookiecutter template.
 
 ### APIClient 
 
+### Code Coverage
+
+`xcov` build artifacts are stored on CircleCI with every build and can be accessed within the Artifacts tab of each build.
+
+####  Coveralls
+
+You can also use Coveralls by setting up the `repo_token` from https://coveralls.io/github/Raizlabs/ios-template-output. Add it to the CircleCI environment as `COVERALLS_REPO_TOKEN`.
+
 ### Danger
 
-To [set up Danger](http://danger.systems/guides/getting_started.html) on CircleCI you'll need to add a `DANGER_GITHUB_API_TOKEN` to the test environment. There are two bots already available: for open source projects use the open source "OSS" bot, and for closed source projects use the "Private" bot.
+To [set up Danger](http://danger.systems/guides/getting_started.html) on CircleCI you'll need to add a `DANGER_GITHUB_API_TOKEN` to the test environment. There are two bots already available for Raizlabs: for open source projects use our "OSS" bot, and for closed source projects use the "Private" bot.
 
 ## Cookie Cutter
 Cookie Cutter is a python project for templating files and directories. Cookie cutter will ask a series of questions as defined in `cookiecutter.json` and then run the expansion on the contained files and directory names, and file contents. Anything with `{{ cookiecutter.variable }}` is expanded when the template is expanded. This is a powerful primitive but has some complications with Xcode
