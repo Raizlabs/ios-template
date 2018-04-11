@@ -1,8 +1,8 @@
 version: 2
 jobs:
-  test-xcode-9-2:
+  test-xcode-9-3:
     macos:
-      xcode: "9.2.0"
+      xcode: "9.3.0"
     shell: /bin/bash --login -eo pipefail
     working_directory: /Users/distiller/project
     steps:
@@ -44,7 +44,7 @@ jobs:
       - run:
           name: Danger
           command: |
-            bundle exec danger 1> /dev/null
+            bundle exec danger
       # Download CocoaPods specs via HTTPS (faster than Git)
       - run:
           name: Install CocoaPods
@@ -102,4 +102,4 @@ workflows:
   version: 2
   test-all:
     jobs:
-      - test-xcode-9-2
+      - test-xcode-9-3
