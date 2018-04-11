@@ -42,8 +42,6 @@ platform :ios do
       workspace: "{{ cookiecutter.project_name | replace(' ', '') }}.xcworkspace",
       scheme: "debug-{{ cookiecutter.project_name | replace(' ', '') }}",
       output_directory: "#{ENV['RZ_TEST_REPORTS']}",
-       # This is needed for Xcode 9.2 and below
-      legacy_support: "true",
        # For some reason coverage is on the "develop-" app target instead of "debug-"
       include_targets: "develop-{{ cookiecutter.project_name | replace(' ', '') }}.app, Services.framework"
     )  
