@@ -52,8 +52,8 @@ platform :ios do
       # )
     end
 
-    xcov_coveralls_service_job_id = nil
-    xcov_coveralls_service_name = nil
+    # xcov_coveralls_service_job_id = nil
+    # xcov_coveralls_service_name = nil
     slather_use_coveralls = "false"
     slather_use_circleci = "false"
 
@@ -64,7 +64,7 @@ platform :ios do
         # xcov_coveralls_service_name = "circleci"
         
         # Coveralls seems to be broken with Slather as well
-        # slather_use_coveralls = "true"
+        slather_use_coveralls = "true"
       end
       slather_use_circleci = "true"
     end
@@ -75,8 +75,8 @@ platform :ios do
       output_directory: "#{ENV['RZ_TEST_REPORTS']}/xcov",
        # For some reason coverage is on the "develop-" app target instead of "debug-"
       include_targets: "develop-PRODUCTNAME.app, Services.framework",
-      coveralls_service_name: xcov_coveralls_service_name,
-      coveralls_service_job_id: xcov_coveralls_service_job_id
+      # coveralls_service_name: xcov_coveralls_service_name,
+      # coveralls_service_job_id: xcov_coveralls_service_job_id
     )
 
     slather_proj = "PRODUCTNAME.xcodeproj"
