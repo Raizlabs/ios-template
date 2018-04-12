@@ -71,10 +71,10 @@ jobs:
           command: test `git status -s \{\{\ cookiecutter.project_name\ \|\ replace\(\'\ \'\,\ \'\'\)\ \}\}/ | wc -l` -eq 0
       # Cache Gems
       - save_cache:
-          key: 5-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}-{{ checksum "Gemfile.lock" }}
-          # The path to the gems may change if .ruby-version file is changed.
+          key: 6-gems-{{ checksum "./PRODUCTNAME/Gemfile.lock" }}-{{ checksum "Gemfile.lock" }}
+          # The path to the gems may change if .ruby-version file is changed or CircleCI image is updated.
           paths:
-            - "/Users/distiller/.gem/ruby/2.4.0"
+            - "/Users/distiller/.gem/ruby/2.4.4"
       # Cache Pods
       - save_cache:
           key: 3-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
