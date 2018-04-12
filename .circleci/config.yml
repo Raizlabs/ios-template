@@ -49,8 +49,7 @@ jobs:
       - run:
           name: Danger
           command: |
-            cd PRODUCTNAME
-            bundle exec danger
+            bundle exec danger --dangerfile=PRODUCTNAME/Dangerfile
       # Download CocoaPods specs via HTTPS (faster than Git)
       - run:
           name: Install CocoaPods
