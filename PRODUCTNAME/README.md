@@ -2,7 +2,7 @@
 
 [![Develop](https://img.shields.io/badge/Hockey-Develop-green.svg)][develop-hockey]
 [![Sprint](https://img.shields.io/badge/Hockey-Sprint-green.svg)][sprint-hockey]
-[![CircleCI](https://circleci.com/gh/Raizlabs/{{ cookiecutter.company_name | replace(' ', '-') | lower }}-ios/tree/develop.svg?style=shield&circle-token=ZZCIRCLE_PROJECT_STATUS_KEYZZ)][circle-ci] [![Coverage Status](https://coveralls.io/repos/github/Raizlabs/{{ cookiecutter.company_name | replace(' ', '-') | lower }}-ios/badge.svg)](https://coveralls.io/github/Raizlabs/{{ cookiecutter.company_name | replace(' ', '-') | lower }}-ios)
+[![CircleCI](https://circleci.com/gh/Raizlabs/{{ cookiecutter.company_name | replace(' ', '-') | lower }}-ios/tree/develop.svg?style=shield&circle-token=ZZCIRCLE_PROJECT_STATUS_KEYZZ)][circle-ci] [![codecov](https://codecov.io/gh/Raizlabs/{{ cookiecutter.company_name | replace(' ', '-') | lower }}-ios/branch/master/graph/badge.svg)](https://codecov.io/gh/Raizlabs/{{ cookiecutter.company_name | replace(' ', '-') | lower }}-ios)
 
 ## Development Process
 All stories and bugs are tracked in [JIRA][]. Development occurs on branches that are tested with the `test` fastlane task once a PR is created. The PR is reviewed and then merged into the `develop` branch. This triggers the `develop` fastlane task which distributes a build to the [develop][develop-hockey] hockey app for testing and PO approval. At the end of a sprint, a `sprint-X` tag is manually created which triggers the `sprint` fastlane task which distributes a build to the [sprint][sprint-hockey] hockey app.
@@ -18,13 +18,13 @@ To get started, see [Contributing](#contributing)
 
 ### Code Coverage
 
-#### Coveralls
+#### Codecov
 
-You can use [Coveralls](https://coveralls.io/) by setting up the `repo_token` after activating the repository. Add it to the CircleCI environment as `COVERALLS_REPO_TOKEN`. You'll also need to update the README badge using the private URL on the Coveralls repo status page.
+You can use [Codecov](https://codecov.io) automatically as long as the repository's owner is a paid Codecov member (assuming this is a private repo).
 
 #### xcov
 
-[xcov](https://github.com/nakiostudio/xcov) generates nicely formatted HTML code coverage reports, and is triggered with every `fastlane test`. The results are located in the `app/build/xcov` folder, just open `index.html`. When run on CircleCI they stored as build artifacts, and also uploaded to [Coveralls](https://coveralls.io/) if you've set the `COVERALLS_REPO_TOKEN` in the CircleCI environment.
+[xcov](https://github.com/nakiostudio/xcov) generates nicely formatted HTML code coverage reports, and is triggered with every `fastlane test`. The results are located in the `app/build/xcov` folder, just open `index.html`. When run on CircleCI they stored as build artifacts.
 
 `xcov` also works with Danger to provide code coverage feedback on every pull request. You can also trigger it manually. The `include_targets` filtering is to exclude external stuff like CocoaPods, but for some reason thinks the target product name for `debug-PRODUCTNAME` is `develop-PRODUCTNAME.app`. 
 

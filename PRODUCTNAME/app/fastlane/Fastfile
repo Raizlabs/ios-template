@@ -64,7 +64,7 @@ platform :ios do
         # xcov_coveralls_service_name = "circleci"
         
         # Coveralls seems to be broken with Slather as well
-        slather_use_coveralls = "true"
+        # slather_use_coveralls = "true"
       end
       slather_use_circleci = "true"
     end
@@ -93,6 +93,7 @@ platform :ios do
       output_directory: slather_output_directory,
       html: "true",
     )
+    # Using Cobertura XML allows us to upload to Codecov.io
     slather(
       proj: slather_proj,
       workspace: slather_workspace,

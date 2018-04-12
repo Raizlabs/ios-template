@@ -28,11 +28,14 @@ jobs:
       - run: cd app && bundle exec fastlane test
       # Store xcov and slather Code Coverage HTML report artifacts
       - store_artifacts:
-          path: /Users/distiller/project/PRODUCTNAME/app/build/xcov
+          path: /Users/distiller/project/app/build/xcov
           destination: xcov
       - store_artifacts:
-          path: /Users/distiller/project/PRODUCTNAME/app/build/slather
+          path: /Users/distiller/project/app/build/slather
           destination: slather
+      - run:
+          name: Upload to Codecov
+          command: bash <(curl -s https://codecov.io/bash) -f app/build/slather/cobertura.xml -X coveragepy -X gcov -X xcode      
       - run:
           name: Danger
           command: |
