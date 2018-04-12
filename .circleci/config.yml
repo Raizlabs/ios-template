@@ -44,6 +44,9 @@ jobs:
           path: /Users/distiller/project/PRODUCTNAME/app/build/slather
           destination: slather
       - run:
+          name: Upload to Codecov
+          command: bash <(curl -s https://codecov.io/bash) -f PRODUCTNAME/app/build/slather/cobertura.xml -X coveragepy -X gcov -X xcode
+      - run:
           name: Danger
           command: |
             bundle exec danger
