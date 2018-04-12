@@ -79,16 +79,28 @@ platform :ios do
       coveralls_service_job_id: xcov_coveralls_service_job_id
     )
 
+    slather_proj = "PRODUCTNAME.xcodeproj"
+    slather_workspace = "PRODUCTNAME.xcworkspace"
+    # Only the Services scheme seems to work. It cannot find our app target schemes. 
+    slather_scheme = "Services"
+    slather_output_directory = "#{ENV['RZ_TEST_REPORTS']}/slather"
+
+    # html and cobertura_xml output must be run separately
     slather(
-    	proj: "PRODUCTNAME.xcodeproj",
-    	workspace: "PRODUCTNAME.xcworkspace",
-    	# Only the Services scheme seems to work. It cannot find our app target schemes. 
-    	scheme: "Services",
-    	output_directory: "#{ENV['RZ_TEST_REPORTS']}/slather",
+      proj: slather_proj,
+      workspace: slather_workspace,
+      scheme: slather_scheme,
+      output_directory: slather_output_directory,
+      html: "true",
+    )
+    slather(
+      proj: slather_proj,
+      workspace: slather_workspace,
+      scheme: slather_scheme,
+      output_directory: slather_output_directory,
     	circleci: slather_use_circleci,
     	coveralls: slather_use_coveralls,
       cobertura_xml: "true",
-    	html: "true",
    	)
 
   end
