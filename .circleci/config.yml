@@ -36,11 +36,13 @@ jobs:
           command: |
             cd PRODUCTNAME/app
             bundle exec fastlane test
-            rm build/develop-PRODUCTNAME-debug-PRODUCTNAME.log
       # Store xcov Code Coverage HTML report artifact 
       - store_artifacts:
-          path: /Users/distiller/project/PRODUCTNAME/app/build/
-          destination: code-coverage
+          path: /Users/distiller/project/PRODUCTNAME/app/build/xcov
+          destination: xcov
+      - store_artifacts:
+          path: /Users/distiller/project/PRODUCTNAME/app/build/slather
+          destination: slather
       - run:
           name: Danger
           command: |

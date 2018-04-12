@@ -19,7 +19,7 @@ src_root = File.expand_path('../app', __FILE__)
 xcov.report(
   workspace: "#{src_root}/{{ cookiecutter.project_name | replace(' ', '') }}.xcworkspace",
   scheme: "debug-{{ cookiecutter.project_name | replace(' ', '') }}",
-  output_directory: "#{ENV['RZ_TEST_REPORTS']}",
+  output_directory: "#{ENV['RZ_TEST_REPORTS']}/xcov",
    # For some reason coverage is on the "develop-" app target instead of "debug-"
   include_targets: "develop-{{ cookiecutter.project_name | replace(' ', '') }}.app, Services.framework",
   ignore_file_path: "#{src_root}/fastlane/.xcovignore"
