@@ -19,7 +19,7 @@ src_root = File.expand_path('../app', __FILE__)
 xcov.report(
   workspace: "#{src_root}/PRODUCTNAME.xcworkspace",
   scheme: "debug-PRODUCTNAME",
-  output_directory: "#{ENV['RZ_TEST_REPORTS']}/xcov",
+  output_directory: "#{src_root}/build/xcov",
    # For some reason coverage is on the "develop-" app target instead of "debug-"
   include_targets: "develop-PRODUCTNAME.app, Services.framework",
   ignore_file_path: "#{src_root}/fastlane/.xcovignore"
