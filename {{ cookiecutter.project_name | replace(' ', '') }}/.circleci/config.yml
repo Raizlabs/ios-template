@@ -3,7 +3,7 @@ version: 2
 jobs:
   test:
     macos:
-      xcode: "9.2.0"
+      xcode: "9.3.0"
     environment:
       FL_OUTPUT_DIR: /Users/distiller/project/output
       # required to set the correct ruby version
@@ -11,20 +11,17 @@ jobs:
     shell: /bin/bash --login -eo pipefail
     working_directory: /Users/distiller/project
     steps:
-      - run:
-          name: pre-start simulator
-          command: xcrun instruments -w "iPhone 8 (11.2) [" || true
       - checkout
       - restore_cache:
-          key: 1-top-gems-{{ "{{" }} checksum "Gemfile.lock" {{ "}}" }}
+          key: 2-gems-{{ "{{" }} checksum "Gemfile.lock" {{ "}}" }}
       - run:
           name: Restore Gems
           command: |
            bundle check --gemfile Gemfile || bundle install --gemfile Gemfile
       - save_cache:
-          key: 1-top-gems-{{ "{{" }} checksum "Gemfile.lock" {{ "}}" }}
+          key: 2-gems-{{ "{{" }} checksum "Gemfile.lock" {{ "}}" }}
           paths:
-            - "{{ "{{" }} $GEM_HOME {{ "}}" }}"
+            - "/Users/distiller/.gem/ruby/2.4.0"
       # Make sure that the output directory exists
       - run: mkdir $FL_OUTPUT_DIR
       - run: cd app && bundle exec fastlane test
@@ -35,7 +32,7 @@ jobs:
             
   integration:
     macos:
-      xcode: "9.2.0"
+      xcode: "9.3.0"
     environment:
       FL_OUTPUT_DIR: /Users/distiller/project/output
     shell: /bin/bash --login -eo pipefail
@@ -48,7 +45,7 @@ jobs:
           path: "${FL_OUTPUT_DIR}/{{ cookiecutter.project_name }}.ipa"
   sprint:
     macos:
-      xcode: "9.2.0"
+      xcode: "9.3.0"
     environment:
       FL_OUTPUT_DIR: /Users/distiller/project/output
     shell: /bin/bash --login -eo pipefail
@@ -61,7 +58,7 @@ jobs:
           path: "${FL_OUTPUT_DIR}/{{ cookiecutter.project_name }}.ipa"
   beta:
     macos:
-      xcode: "9.2.0"
+      xcode: "9.3.0"
     environment:
       FL_OUTPUT_DIR: /Users/distiller/project/output
     shell: /bin/bash --login -eo pipefail
