@@ -26,6 +26,11 @@ jobs:
       # Make sure that the output directory exists
       - run: mkdir $FL_OUTPUT_DIR
       - run: cd app && bundle exec fastlane test
+      - run:
+          name: Screenshots
+          command: |
+            cd app
+            bundle exec fastlane snapshot
       # Store xcov and slather Code Coverage HTML report artifacts
       - store_artifacts:
           path: /Users/distiller/project/app/build/xcov
@@ -33,6 +38,9 @@ jobs:
       - store_artifacts:
           path: /Users/distiller/project/app/build/slather
           destination: slather
+      - store_artifacts:
+          path: /Users/distiller/project/app/fastlane/screenshots
+          destination: screenshots
       - run:
           name: Upload to Codecov
           command: bash <(curl -s https://codecov.io/bash) -f app/build/slather/cobertura.xml -X coveragepy -X gcov -X xcode      

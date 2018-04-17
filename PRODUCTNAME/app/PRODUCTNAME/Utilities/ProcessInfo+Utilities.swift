@@ -16,7 +16,7 @@ extension ProcessInfo {
         // If you want to run the app in Debug mode, but have it pretend that it
         // is running UI tests, for purposes of testing with fake data or the like,
         // return true here.
-        #if DEBUG
+        #if targetEnvironment(simulator)
             return ProcessInfo.processInfo.environment[ProcessInfo.uiTestsKey] == "true"
         #else
             return false

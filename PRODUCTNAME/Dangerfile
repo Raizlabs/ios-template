@@ -52,7 +52,7 @@ if !(token.nil? or username.nil? or reponame.nil? or build.nil?)
 
   xcov = CircleciArtifact::Query.new 'xcov/index.html'
   slather = CircleciArtifact::Query.new 'slather/index.html'
-  screenshots = CircleciArtifact::Query.new 'screenshots/index.html'
+  screenshots = CircleciArtifact::Query.new 'screenshots/screenshots.html'
   queries = [xcov, slather, screenshots]
   results = fetcher.fetch(queries)
 
@@ -61,11 +61,11 @@ if !(token.nil? or username.nil? or reponame.nil? or build.nil?)
   screenshots_url = results.url_for_query(screenshots)
 
   if !xcov_url.nil?
-      message "[xcov](#{xcov_url})"
+      message "[Code Coverage: xcov](#{xcov_url})"
   end
 
   if !slather_url.nil?
-      message "[Slather](#{slather_url})"
+      message "[Code Coverage: Slather](#{slather_url})"
   end
 
   if !screenshots_url.nil?
