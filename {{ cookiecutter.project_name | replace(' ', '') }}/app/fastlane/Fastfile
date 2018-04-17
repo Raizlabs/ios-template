@@ -5,6 +5,7 @@ default_platform :ios
 # Set by build environment
 # FL_HOCKEY_API_TOKEN
 # RZ_KEYCHAIN_PASSWORD
+# SLACK_URL - set the hook URL in the CircleCI environment
 
 ENV['RZ_ARTIFACTS'] ||= ENV['CIRCLE_ARTIFACTS'] || './build'
 ENV['RZ_TEST_REPORTS'] ||= ENV['CIRCLE_TEST_REPORTS'] || './build'
@@ -38,34 +39,10 @@ platform :ios do
       sh "mv #{ENV['RZ_TEST_REPORTS']}/report.junit #{ENV['RZ_TEST_REPORTS']}/report.xml"
     end
 
-    if ENV['COVERALLS_REPO_TOKEN'].nil?
-
-    else
-      # xcov(
-      #   workspace: "{{ cookiecutter.project_name | replace(' ', '') }}.xcworkspace",
-      #   scheme: "debug-{{ cookiecutter.project_name | replace(' ', '') }}",
-      #   output_directory: "#{ENV['RZ_TEST_REPORTS']}/xcov",
-      #    # For some reason coverage is on the "develop-" app target instead of "debug-"
-      #   include_targets: "develop-{{ cookiecutter.project_name | replace(' ', '') }}.app, Services.framework",
-      #   coveralls_service_name: "circleci",
-      #   coveralls_service_job_id: "#{ENV['CIRCLE_BUILD_NUM']}"
-      # )
-    end
-
-    # xcov_coveralls_service_job_id = nil
-    # xcov_coveralls_service_name = nil
     slather_use_coveralls = "false"
     slather_use_circleci = "false"
 
     if !ENV['CIRCLE_BUILD_NUM'].nil?
-      if !ENV['COVERALLS_REPO_TOKEN'].nil?
-        # Coveralls is broken on xcov 1.4.0
-        # xcov_coveralls_service_job_id = ENV['CIRCLE_BUILD_NUM']
-        # xcov_coveralls_service_name = "circleci"
-        
-        # Coveralls seems to be broken with Slather as well
-        # slather_use_coveralls = "true"
-      end
       slather_use_circleci = "true"
     end
 
@@ -75,8 +52,6 @@ platform :ios do
       output_directory: "#{ENV['RZ_TEST_REPORTS']}/xcov",
        # For some reason coverage is on the "develop-" app target instead of "debug-"
       include_targets: "develop-{{ cookiecutter.project_name | replace(' ', '') }}.app, Services.framework",
-      # coveralls_service_name: xcov_coveralls_service_name,
-      # coveralls_service_job_id: xcov_coveralls_service_job_id
     )
 
     slather_proj = "{{ cookiecutter.project_name | replace(' ', '') }}.xcodeproj"
@@ -99,10 +74,10 @@ platform :ios do
       workspace: slather_workspace,
       scheme: slather_scheme,
       output_directory: slather_output_directory,
-    	circleci: slather_use_circleci,
-    	coveralls: slather_use_coveralls,
+      circleci: slather_use_circleci,
+      coveralls: slather_use_coveralls,
       cobertura_xml: "true",
-   	)
+    )
 
   end
 
@@ -138,8 +113,8 @@ platform :ios do
   #    provisioningProfiles: { "" => "" }
   #  })    
   #  pilot(
-  #  	distribute_external: false,
-  #    	skip_waiting_for_build_processing: true,
+  #   distribute_external: false,
+  #     skip_waiting_for_build_processing: true,
   #  )
   #  upload_symbols_to_crashlytics(:api_token => 'ZZCRASHLYTICS_API_TOKEN_APPSTOREZZ')
   #  slack(message: "Successfully uploaded build #{build_number} to test flight", success: true)
