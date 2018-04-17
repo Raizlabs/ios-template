@@ -18,7 +18,7 @@ jobs:
             bundle check --gemfile Gemfile || bundle install --gemfile Gemfile
       # Cache Gems
       - save_cache:
-            - 1-danger-gems-{{ checksum "Gemfile.lock" }}
+          key: 1-danger-gems-{{ checksum "Gemfile.lock" }}
           # The path to the gems may change if .ruby-version file is changed or CircleCI image is updated.
           paths:
             - "/Users/distiller/.gem/ruby/2.4.4"
