@@ -46,26 +46,32 @@ username = ENV['CIRCLE_PROJECT_USERNAME']
 reponame = ENV['CIRCLE_PROJECT_REPONAME']
 build = ENV['CIRCLE_BUILD_NUM']
 
-fetcher = CircleciArtifact::Fetcher.new token, username, reponame, build
+if !token.nil? and !username.nil? and !reponame.nil? and !build.nil?
+	fetcher = CircleciArtifact::Fetcher.new token, username, reponame, build
 
-xcov = CircleciArtifact::Query.new 'xcov/index.html'
-slather = CircleciArtifact::Query.new 'slather/index.html'
-screenshots = CircleciArtifact::Query.new 'screenshots/index.html'
-queries = [xcov, slather, screenshots]
-results = fetcher.fetch(queries)
+	xcov = CircleciArtifact::Query.new 'xcov/index.html'
+	slather = CircleciArtifact::Query.new 'slather/index.html'
+	screenshots = CircleciArtifact::Query.new 'screenshots/index.html'
+	queries = [xcov, slather, screenshots]
+	results = fetcher.fetch(queries)
 
-xcov_url = results.url_for_query(xcov)
-slather_url = results.url_for_query(slather)
-screenshots_url = results.url_for_query(screenshots)
+	xcov_url = results.url_for_query(xcov)
+	slather_url = results.url_for_query(slather)
+	screenshots_url = results.url_for_query(screenshots)
 
-if !xcov_url.nil?
-	message "[xcov](#{xcov_url})"
+	if !xcov_url.nil?
+		message "[xcov](#{xcov_url})"
+	end
+
+	if !slather_url.nil?
+		message "[Slather](#{slather_url})"
+	end
+
+	if !screenshots_url.nil?
+		message "[Screenshots](#{screenshots_url})"
+	end
+else
+	warn "Missing CircleCI artifacts. [CIRCLE_API_TOKEN](https://github.com/Raizlabs/circleci_artifact#getting-started) not set."
 end
 
-if !slather_url.nil?
-	message "[Slather](#{slather_url})"
-end
 
-if !screenshots_url.nil?
-	message "[Screenshots](#{screenshots_url})"
-end
