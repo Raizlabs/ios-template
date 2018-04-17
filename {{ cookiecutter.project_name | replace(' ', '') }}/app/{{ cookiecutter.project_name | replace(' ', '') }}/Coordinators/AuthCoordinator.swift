@@ -28,7 +28,7 @@ class AuthCoordinator: Coordinator {
         if client.oauthClient.isAuthenticated {
             return .authenticated
         }
-        else if UserDefaults.hasOnboarded {
+        else if UserDefaults.hasOnboarded || ProcessInfo.isRunningUITests {
             return .onboarded
         }
         else {
