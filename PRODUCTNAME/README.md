@@ -16,84 +16,19 @@ To get started, see [Contributing](#contributing)
 
 ## Setup
 
-### Code Coverage
-
 #### Codecov
 
 You can use [Codecov](https://codecov.io) automatically as long as the repository's owner is a paid Codecov member (assuming this is a private repo).
 
-#### xcov
+#### Danger
 
-[xcov](https://github.com/nakiostudio/xcov) generates nicely formatted HTML code coverage reports, and is triggered with every `fastlane test`. The results are located in the `app/build/xcov` folder, just open `index.html`. When run on CircleCI they stored as build artifacts.
+To [set up Danger](http://danger.systems/guides/getting_started.html) on CircleCI you'll need to add a `DANGER_GITHUB_API_TOKEN` to the CI test environment. There are two bots already available for Raizlabs: for open source projects use our "OSS" bot, and for closed source projects use the "Private" bot. You'll find these tokens in our shared credential storage if you search for "GitHub Bot".
 
-`xcov` also works with Danger to provide code coverage feedback on every pull request. You can also trigger it manually. The `include_targets` filtering is to exclude external stuff like CocoaPods, but for some reason thinks the target product name for `debug-PRODUCTNAME` is `develop-PRODUCTNAME.app`. 
+Similarly, you'll also need to set up the `CIRCLE_API_TOKEN` for build artifacts like screenshots and code coverage reports to show up in Danger.
 
-You should add other internal frameworks to `include_targets` inside the `Dangerfile` and `Fastfile` as development progresses.
-
-```bash
-# Manually
-
-# fastlane will run xcov for you
-$ bundle exec fastlane test
-
-# when run manually, you must first build via `fastlane test` to generate Xcode's internal code coverage reports
-$ bundle exec xcov -w app/PRODUCTNAME.xcworkspace/ -s debug-PRODUCTNAME --include_targets "develop-PRODUCTNAME.app, Services.framework" -o app/build/xcov
-```
-
-```ruby
-# Fastfile
-  xcov(
-    workspace: "PRODUCTNAME.xcworkspace",
-    scheme: "debug-PRODUCTNAME",
-    output_directory: "#{ENV['RZ_TEST_REPORTS']}/xcov",
-     # For some reason coverage is on the "develop-" app target instead of "debug-"
-    include_targets: "develop-PRODUCTNAME.app, Services.framework",
-  )
-```
-
-```ruby
-# Dangerfile
-xcov.report(
-  workspace: "#{src_root}/PRODUCTNAME.xcworkspace",
-  scheme: "debug-PRODUCTNAME",
-  output_directory: "#{ENV['RZ_TEST_REPORTS']}/xcov",
-   # For some reason coverage is on the "develop-" app target instead of "debug-"
-  include_targets: "develop-PRODUCTNAME.app, Services.framework",
-  ignore_file_path: "#{src_root}/fastlane/.xcovignore"
-) 
-```
-
-#### Slather
-
-[Slather](https://github.com/SlatherOrg/slather) is an alternative to `xcov` and is capable of generating more comprensive HTML reports (located in `app/build/slather`), as well as uploading to a number of code coverage services like Codecov and  Coveralls. It is also integrated into `fastlane test` but you can run it manually.
-
-There is a similar issue to `xcov` where the scheme for the app target cannot be found, so right now only `Services` is included.
-
-```bash
-# Using fastlane
-$ bundle exec fastlane test
-
-# Manually run and open HTML report
-$ bundle exec slather coverage --show --html --scheme Services --workspace app/PRODUCTNAME.xcworkspace/ --output-directory app/build/slather app/PRODUCTNAME.xcodeproj/
-```
-
-```ruby
-# Fastfile
-
-slather(
-	proj: "PRODUCTNAME.xcodeproj",
-	workspace: "PRODUCTNAME.xcworkspace",
-	# Only the Services scheme seems to work. It cannot find our app target schemes. 
-	scheme: "Services",
-	output_directory: "#{ENV['RZ_TEST_REPORTS']}/slather",
-	html: "true",
-)
-```
-
-### Danger
-
-To [set up Danger](http://danger.systems/guides/getting_started.html) on CircleCI you'll need to add a `DANGER_GITHUB_API_TOKEN` to the test environment. There are two bots already available for Raizlabs: for open source projects use our "OSS" bot, and for closed source projects use the "Private" bot.
-
+* Find the entry "CircleCI API Tokens" in our shared credential storage. 
+* Grab the "Open Source" token for open source projects, and the "Private Repos" token for closed source projects.
+* Add the appropriate token as `CIRCLE_API_TOKEN` to the CircleCI build environment for this repo.
 
 ## Architecture
 
@@ -171,3 +106,73 @@ All development branches must pass CI before merging. Save yourself some trouble
 
 ### Synx
 To keep the Application structure orderly, organize code logically into groups using Xcode and run [synx](https://github.com/venmo/synx) (`bundle exec fastlane synx`) before commiting.
+
+## Additional Notes
+
+#### xcov
+
+[xcov](https://github.com/nakiostudio/xcov) generates nicely formatted HTML code coverage reports, and is triggered with every `fastlane test`. The results are located in the `app/build/xcov` folder, just open `index.html`. When run on CircleCI they stored as build artifacts.
+
+`xcov` also works with Danger to provide code coverage feedback on every pull request. You can also trigger it manually. The `include_targets` filtering is to exclude external stuff like CocoaPods, but for some reason thinks the target product name for `debug-PRODUCTNAME` is `develop-PRODUCTNAME.app`. 
+
+You should add other internal frameworks to `include_targets` inside the `Dangerfile` and `Fastfile` as development progresses.
+
+```bash
+# Manually
+
+# fastlane will run xcov for you
+$ bundle exec fastlane test
+
+# when run manually, you must first build via `fastlane test` to generate Xcode's internal code coverage reports
+$ bundle exec xcov -w app/PRODUCTNAME.xcworkspace/ -s debug-PRODUCTNAME --include_targets "develop-PRODUCTNAME.app, Services.framework" -o app/build/xcov
+```
+
+```ruby
+# Fastfile
+  xcov(
+    workspace: "PRODUCTNAME.xcworkspace",
+    scheme: "debug-PRODUCTNAME",
+    output_directory: "#{ENV['RZ_TEST_REPORTS']}/xcov",
+     # For some reason coverage is on the "develop-" app target instead of "debug-"
+    include_targets: "develop-PRODUCTNAME.app, Services.framework",
+  )
+```
+
+```ruby
+# Dangerfile
+xcov.report(
+  workspace: "#{src_root}/PRODUCTNAME.xcworkspace",
+  scheme: "debug-PRODUCTNAME",
+  output_directory: "#{ENV['RZ_TEST_REPORTS']}/xcov",
+   # For some reason coverage is on the "develop-" app target instead of "debug-"
+  include_targets: "develop-PRODUCTNAME.app, Services.framework",
+  ignore_file_path: "#{src_root}/fastlane/.xcovignore"
+) 
+```
+
+#### Slather
+
+[Slather](https://github.com/SlatherOrg/slather) is an alternative to `xcov` and is capable of generating more comprensive HTML reports (located in `app/build/slather`), as well as uploading to a number of code coverage services like Codecov and  Coveralls. It is also integrated into `fastlane test` but you can run it manually.
+
+There is a similar issue to `xcov` where the scheme for the app target cannot be found, so right now only `Services` is included.
+
+```bash
+# Using fastlane
+$ bundle exec fastlane test
+
+# Manually run and open HTML report
+$ bundle exec slather coverage --show --html --scheme Services --workspace app/PRODUCTNAME.xcworkspace/ --output-directory app/build/slather app/PRODUCTNAME.xcodeproj/
+```
+
+```ruby
+# Fastfile
+
+slather(
+	proj: "PRODUCTNAME.xcodeproj",
+	workspace: "PRODUCTNAME.xcworkspace",
+	# Only the Services scheme seems to work. It cannot find our app target schemes. 
+	scheme: "Services",
+	output_directory: "#{ENV['RZ_TEST_REPORTS']}/slather",
+	html: "true",
+)
+```
