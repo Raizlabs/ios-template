@@ -4,7 +4,7 @@ devices([
   "iPhone 8",
   "iPhone 8 Plus",
   "iPhone X",
-  # "iPad Pro (9.7-inch)",
+  "iPad Pro (9.7-inch)",
   # "iPad Pro (12.9-inch)",
   # "iPad Pro (10.5-inch)", # My not be supported in iTunes Connect, so do a test upload
 ])
