@@ -25,7 +25,8 @@ xcov.report(
    # For some reason coverage is on the "develop-" app target instead of "debug-"
   include_targets: "develop-PRODUCTNAME.app, Services.framework",
   ignore_file_path: "#{src_root}/fastlane/.xcovignore"
-)  
+  derived_data_path: "#{src_root}/build/derived_data"
+)
 
 ## ** SWIFT LINT ***
 # Use the SwiftLint included via CocoaPods
