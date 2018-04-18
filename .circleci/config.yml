@@ -26,10 +26,16 @@ jobs:
           paths:
             - "/Users/distiller/.gem/ruby/2.4.4"
       - run:
-          name: Code Coverage
+          name: Tests
           command: |
             cd PRODUCTNAME/app
             bundle exec fastlane test
+      - run:
+          name: Code Coverage
+          when: always
+          command: |
+            cd PRODUCTNAME/app
+            bundle exec fastlane coverage
       - run:
           name: Screenshots
           when: always

@@ -11,6 +11,8 @@ import XCTest
 
 class {{ cookiecutter.project_name | replace(' ', '') }}Tests: XCTestCase {
     func testUserDefaults() {
+        //break test on purpose
+        XCTAssertTrue(false)
         XCTAssertFalse(UserDefaults.hasOnboarded)
     }
 }
