@@ -32,6 +32,7 @@ jobs:
             bundle exec fastlane test
       - run:
           name: Screenshots
+          when: always
           command: |
             cd PRODUCTNAME/app
             bundle exec fastlane snapshot
@@ -50,9 +51,11 @@ jobs:
           destination: scan
       - run:
           name: Upload to Codecov
+          when: always
           command: bash <(curl -s https://codecov.io/bash) -f PRODUCTNAME/app/build/slather/cobertura.xml -X coveragepy -X gcov -X xcode
       - run:
           name: Danger
+          when: always
           command: |
             bundle exec danger --dangerfile=PRODUCTNAME/Dangerfile
 
