@@ -1941,7 +1941,7 @@
 				86A65AFA1FA0EA2400705C14 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Develop;
+			defaultConfigurationName = Debug;
 		};
 		ABC778701DC90B7A00815FB9 /* Build configuration list for PBXProject "{{ cookiecutter.project_name | replace(' ', '') }}" */ = {
 			isa = XCConfigurationList;
@@ -1952,7 +1952,7 @@
 				00C3A8FD1F20FF1700A1E7D0 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Develop;
+			defaultConfigurationName = Debug;
 		};
 		ABC778921DC90B7A00815FB9 /* Build configuration list for PBXNativeTarget "{{ cookiecutter.project_name | replace(' ', '') }}" */ = {
 			isa = XCConfigurationList;
@@ -1963,7 +1963,7 @@
 				00C3A8FE1F20FF1700A1E7D0 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Develop;
+			defaultConfigurationName = Debug;
 		};
 		ABC778951DC90B7A00815FB9 /* Build configuration list for PBXNativeTarget "{{ cookiecutter.project_name | replace(' ', '') }}Tests" */ = {
 			isa = XCConfigurationList;
@@ -1974,7 +1974,7 @@
 				00C3A8FF1F20FF1700A1E7D0 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Develop;
+			defaultConfigurationName = Debug;
 		};
 		CD09C94620741945006D3501 /* Build configuration list for PBXNativeTarget "Screenshots" */ = {
 			isa = XCConfigurationList;
@@ -1985,7 +1985,7 @@
 				CD09C94520741945006D3501 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Develop;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

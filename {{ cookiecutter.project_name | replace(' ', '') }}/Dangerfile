@@ -53,12 +53,18 @@ if !(token.nil? or username.nil? or reponame.nil? or build.nil?)
   xcov = CircleciArtifact::Query.new 'xcov/index.html'
   slather = CircleciArtifact::Query.new 'slather/index.html'
   screenshots = CircleciArtifact::Query.new 'screenshots/screenshots.html'
-  queries = [xcov, slather, screenshots]
+  tests = CircleciArtifact::Query.new 'scan/report.html'
+  queries = [xcov, slather, screenshots, tests]
   results = fetcher.fetch(queries)
 
   xcov_url = results.url_for_query(xcov)
   slather_url = results.url_for_query(slather)
   screenshots_url = results.url_for_query(screenshots)
+  tests_url = results.url_for_query(tests)
+
+  if !tests_url.nil?
+      message "[Test Results](#{tests_url})"
+  end
 
   if !xcov_url.nil?
       message "[Code Coverage: xcov](#{xcov_url})"
@@ -74,3 +80,8 @@ if !(token.nil? or username.nil? or reponame.nil? or build.nil?)
 else
   warn "Missing CircleCI artifacts. Most likely the [CIRCLE_API_TOKEN](https://github.com/Raizlabs/circleci_artifact#getting-started) is not set, or Danger is not running on CircleCI."
 end
+
+# Test Reporting
+
+junit.parse "#{src_root}/build/scan/report.junit"
+junit.report
