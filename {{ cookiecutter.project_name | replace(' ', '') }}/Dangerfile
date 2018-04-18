@@ -24,8 +24,9 @@ xcov.report(
   output_directory: "#{src_root}/build/xcov",
    # For some reason coverage is on the "develop-" app target instead of "debug-"
   include_targets: "develop-{{ cookiecutter.project_name | replace(' ', '') }}.app, Services.framework",
-  ignore_file_path: "#{src_root}/fastlane/.xcovignore"
-)  
+  ignore_file_path: "#{src_root}/fastlane/.xcovignore",
+  derived_data_path: "#{src_root}/build/derived_data"
+)
 
 ## ** SWIFT LINT ***
 # Use the SwiftLint included via CocoaPods
