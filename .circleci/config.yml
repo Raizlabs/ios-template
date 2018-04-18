@@ -42,6 +42,9 @@ jobs:
       - store_artifacts:
           path: /Users/distiller/project/PRODUCTNAME/app/fastlane/screenshots
           destination: screenshots
+      - store_artifacts:
+          path: /Users/distiller/project/PRODUCTNAME/app/build/scan
+          destination: scan
       - run:
           name: Upload to Codecov
           command: bash <(curl -s https://codecov.io/bash) -f PRODUCTNAME/app/build/slather/cobertura.xml -X coveragepy -X gcov -X xcode
