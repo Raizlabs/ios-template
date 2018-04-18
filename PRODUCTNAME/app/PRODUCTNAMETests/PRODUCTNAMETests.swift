@@ -11,6 +11,8 @@ import XCTest
 
 class PRODUCTNAMETests: XCTestCase {
     func testUserDefaults() {
+        // let's break a test on purpose
+        XCTAssertTrue(false)
         XCTAssertFalse(UserDefaults.hasOnboarded)
     }
 }
