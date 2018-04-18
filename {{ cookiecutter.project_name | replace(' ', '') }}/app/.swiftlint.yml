@@ -38,4 +38,4 @@ custom_rules:
 excluded:
   - Pods
   - {{ cookiecutter.project_name | replace(' ', '') }}/Resources/Generated
-  - fastlane/SnapshotHelper.swift
+  - Screenshots/Helpers/SnapshotHelper.swift

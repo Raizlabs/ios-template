@@ -22,8 +22,8 @@ xcov.report(
   workspace: "#{src_root}/PRODUCTNAME.xcworkspace",
   scheme: "debug-PRODUCTNAME",
   output_directory: "#{src_root}/build/xcov",
-   # For some reason coverage is on the "develop-" app target instead of "debug-"
-  include_targets: "develop-PRODUCTNAME.app, Services.framework",
+  # Add targets here as you add new internal products / frameworks
+  include_targets: "debug-PRODUCTNAME.app, Services.framework",
   ignore_file_path: "#{src_root}/fastlane/.xcovignore",
   derived_data_path: "#{src_root}/build/derived_data"
 )

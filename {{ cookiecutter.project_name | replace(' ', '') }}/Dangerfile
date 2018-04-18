@@ -22,8 +22,8 @@ xcov.report(
   workspace: "#{src_root}/{{ cookiecutter.project_name | replace(' ', '') }}.xcworkspace",
   scheme: "debug-{{ cookiecutter.project_name | replace(' ', '') }}",
   output_directory: "#{src_root}/build/xcov",
-   # For some reason coverage is on the "develop-" app target instead of "debug-"
-  include_targets: "develop-{{ cookiecutter.project_name | replace(' ', '') }}.app, Services.framework",
+  # Add targets here as you add new internal products / frameworks
+  include_targets: "debug-{{ cookiecutter.project_name | replace(' ', '') }}.app, Services.framework",
   ignore_file_path: "#{src_root}/fastlane/.xcovignore",
   derived_data_path: "#{src_root}/build/derived_data"
 )
