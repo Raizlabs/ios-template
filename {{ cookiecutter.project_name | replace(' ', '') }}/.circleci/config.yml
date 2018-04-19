@@ -16,6 +16,8 @@ jobs:
       - checkout
       - restore_cache:
           key: 3-gems-{{ "{{" }} checksum "Gemfile.lock" {{ "}}" }}
+          # Fall back to a previous cache if exact match cannot be found
+          key: 3-gems-
       - run:
           name: Restore Gems
           command: |
@@ -38,12 +40,6 @@ jobs:
           command: |
             cd app
             bundle exec fastlane coverage
-      - run:
-          name: Screenshots
-          when: always
-          command: |
-            cd app
-            bundle exec fastlane snapshot
       # Store xcov and slather Code Coverage HTML report artifacts
       - store_artifacts:
           path: /Users/distiller/project/app/build/xcov
@@ -52,15 +48,28 @@ jobs:
           path: /Users/distiller/project/app/build/slather
           destination: slather
       - store_artifacts:
-          path: /Users/distiller/project/app/fastlane/screenshots
-          destination: screenshots
-      - store_artifacts:
           path: /Users/distiller/project/app/build/scan
           destination: scan
+      # Update Danger as soon as we have code coverage/tests, while waiting for screenshots to be generated
+      - run:
+          name: Danger
+          when: always
+          command: |
+            bundle exec danger
       - run:
           name: Upload to Codecov
           when: always
           command: bash <(curl -s https://codecov.io/bash) -f app/build/slather/cobertura.xml -X coveragepy -X gcov -X xcode      
+      - run:
+          name: Screenshots
+          when: always
+          command: |
+            cd app
+            bundle exec fastlane snapshot
+      - store_artifacts:
+          path: /Users/distiller/project/app/fastlane/screenshots
+          destination: screenshots
+      # Run Danger again once screenshots are complete
       - run:
           name: Danger
           when: always

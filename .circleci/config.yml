@@ -14,6 +14,7 @@ jobs:
       - restore_cache:
           keys: 
             - 1-danger-gems-{{ checksum "Gemfile.lock" }}
+            # Fall back to a previous cache if exact match cannot be found
             - 1-danger-gems-
       - run:
           name: Restore Ruby Gems
@@ -36,12 +37,6 @@ jobs:
           command: |
             cd PRODUCTNAME/app
             bundle exec fastlane coverage
-      - run:
-          name: Screenshots
-          when: always
-          command: |
-            cd PRODUCTNAME/app
-            bundle exec fastlane snapshot
       # Store xcov Code Coverage HTML report artifact 
       - store_artifacts:
           path: /Users/distiller/project/PRODUCTNAME/app/build/xcov
@@ -50,15 +45,28 @@ jobs:
           path: /Users/distiller/project/PRODUCTNAME/app/build/slather
           destination: slather
       - store_artifacts:
-          path: /Users/distiller/project/PRODUCTNAME/app/fastlane/screenshots
-          destination: screenshots
-      - store_artifacts:
           path: /Users/distiller/project/PRODUCTNAME/app/build/scan
           destination: scan
+      # Update Danger as soon as we have code coverage/tests, while waiting for screenshots to be generated
+      - run:
+          name: Danger
+          when: always
+          command: |
+            bundle exec danger --dangerfile=PRODUCTNAME/Dangerfile
       - run:
           name: Upload to Codecov
           when: always
           command: bash <(curl -s https://codecov.io/bash) -f PRODUCTNAME/app/build/slather/cobertura.xml -X coveragepy -X gcov -X xcode
+      - run:
+          name: Screenshots
+          when: always
+          command: |
+            cd PRODUCTNAME/app
+            bundle exec fastlane snapshot
+      - store_artifacts:
+          path: /Users/distiller/project/PRODUCTNAME/app/fastlane/screenshots
+          destination: screenshots
+      # Run Danger again once screenshots are complete
       - run:
           name: Danger
           when: always
@@ -79,6 +87,7 @@ jobs:
       - restore_cache:
           keys: 
             - 6-gems-{{ checksum "Gemfile.lock" }}
+            # Fall back to a previous cache if exact match cannot be found
             - 6-gems-
       - run:
           name: Restore Ruby Gems

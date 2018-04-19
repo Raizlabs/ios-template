@@ -64,19 +64,23 @@ if !(token.nil? or username.nil? or reponame.nil? or build.nil?)
   tests_url = results.url_for_query(tests)
 
   if !tests_url.nil?
-      message "[Test Results](#{tests_url})"
+    message "[Test Results](#{tests_url})"
+  else
+    message "Tests in progress..."
   end
 
   if !xcov_url.nil?
-      message "[Code Coverage: xcov](#{xcov_url})"
+    message "[Code Coverage: xcov](#{xcov_url})"
   end
 
   if !slather_url.nil?
-      message "[Code Coverage: Slather](#{slather_url})"
+    message "[Code Coverage: Slather](#{slather_url})"
   end
 
   if !screenshots_url.nil?
-      message "[Screenshots](#{screenshots_url})"
+    message "[Screenshots](#{screenshots_url})"
+  else
+    message "Screenshots in progress..."
   end
 else
   warn "Missing CircleCI artifacts. Most likely the [CIRCLE_API_TOKEN](https://github.com/Raizlabs/circleci_artifact#getting-started) is not set, or Danger is not running on CircleCI."
