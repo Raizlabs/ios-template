@@ -68,7 +68,6 @@ platform :ios do
 
     slather_proj = "{{ cookiecutter.project_name | replace(' ', '') }}.xcodeproj"
     slather_workspace = xcov_workspace
-    # Only the Services scheme seems to work. It cannot find our app target schemes. 
     slather_scheme = TEST_SCHEME
     # Add binaries here as you create internal frameworks
     slather_binaries = ['debug-{{ cookiecutter.project_name | replace(' ', '') }}', 'Services']
