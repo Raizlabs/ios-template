@@ -49,14 +49,14 @@ reponame = ENV['CIRCLE_PROJECT_REPONAME']
 build = ENV['CIRCLE_BUILD_NUM']
 
 if !(token.nil? or username.nil? or reponame.nil? or build.nil?)
-  fetcher = CircleciArtifact::Fetcher.new token, username, reponame, build
+  fetcher = CircleciArtifact::Fetcher.new(token: token, username: username, reponame: reponame, build: build)
 
-  xcov = CircleciArtifact::Query.new 'xcov/index.html'
-  slather = CircleciArtifact::Query.new 'slather/index.html'
-  screenshots = CircleciArtifact::Query.new 'screenshots/screenshots.html'
-  tests = CircleciArtifact::Query.new 'scan/report.html'
+  xcov = CircleciArtifact::Query.new(url_substring: 'xcov/index.html')
+  slather = CircleciArtifact::Query.new(url_substring: 'slather/index.html')
+  screenshots = CircleciArtifact::Query.new(url_substring: 'screenshots/screenshots.html')
+  tests = CircleciArtifact::QueryQuery.new(url_substring: 'scan/report.html')
   queries = [xcov, slather, screenshots, tests]
-  results = fetcher.fetch(queries)
+  results = fetcher.fetch_queries(queries)
 
   xcov_url = results.url_for_query(xcov)
   slather_url = results.url_for_query(slather)
