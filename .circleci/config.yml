@@ -6,6 +6,9 @@ jobs:
     environment:
       LC_ALL: en_US.UTF-8
       LANG: en_US.UTF-8
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: /Users/distiller/project/PRODUCTNAME/app/build/gems
     shell: /bin/bash --login -eo pipefail
     working_directory: /Users/distiller/project
     steps:
@@ -13,19 +16,18 @@ jobs:
       # Setup Ruby dependencies
       - restore_cache:
           keys: 
-            - 1-danger-gems-{{ checksum "Gemfile.lock" }}
+            - 7-gems-{{ checksum "Gemfile.lock" }}
             # Fall back to a previous cache if exact match cannot be found
-            - 1-danger-gems-
+            - 7-gems-
       - run:
           name: Restore Ruby Gems
           command: |
-            bundle check --gemfile Gemfile || bundle install --gemfile Gemfile
+            bundle check || bundle install
       # Cache Gems
       - save_cache:
-          key: 1-danger-gems-{{ checksum "Gemfile.lock" }}
-          # The path to the gems may change if .ruby-version file is changed or CircleCI image is updated.
+          key: 7-gems-{{ checksum "Gemfile.lock" }}
           paths:
-            - "/Users/distiller/.gem/ruby/2.4.4"
+            - "/Users/distiller/project/PRODUCTNAME/app/build/gems"
       - run:
           name: Tests
           command: |
@@ -79,6 +81,9 @@ jobs:
     environment:
       LC_ALL: en_US.UTF-8
       LANG: en_US.UTF-8
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: /Users/distiller/project/PRODUCTNAME/app/build/gems
     shell: /bin/bash --login -eo pipefail
     working_directory: /Users/distiller/project
     steps:
@@ -86,9 +91,9 @@ jobs:
       # Setup Ruby dependencies
       - restore_cache:
           keys: 
-            - 6-gems-{{ checksum "Gemfile.lock" }}
+            - 7-gems-{{ checksum "Gemfile.lock" }}
             # Fall back to a previous cache if exact match cannot be found
-            - 6-gems-
+            - 7-gems-
       - run:
           name: Restore Ruby Gems
           command: |
@@ -136,10 +141,9 @@ jobs:
           command: test `git status -s \{\{\ cookiecutter.project_name\ \|\ replace\(\'\ \'\,\ \'\'\)\ \}\}/ | wc -l` -eq 0
       # Cache Gems
       - save_cache:
-          key: 6-gems-{{ checksum "Gemfile.lock" }}
-          # The path to the gems may change if .ruby-version file is changed or CircleCI image is updated.
+          key: 7-gems-{{ checksum "Gemfile.lock" }}
           paths:
-            - "/Users/distiller/.gem/ruby/2.4.4"
+            - "/Users/distiller/project/PRODUCTNAME/app/build/gems"
       # Cache Pods
       - save_cache:
           key: 3-pods-{{ checksum "./PRODUCTNAME/app/Podfile.lock" }}
