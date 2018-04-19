@@ -53,6 +53,8 @@ platform :ios do
       slather_use_circleci = "true"
     end
 
+    # Add targets here as you create internal frameworks
+    xcov_targets = "debug-{{ cookiecutter.project_name | replace(' ', '') }}.app, Services.framework"
     xcov_scheme = TEST_SCHEME
     xcov_workspace = "{{ cookiecutter.project_name | replace(' ', '') }}.xcworkspace"
 
@@ -60,15 +62,16 @@ platform :ios do
       workspace: xcov_workspace,
       scheme: xcov_scheme,
       output_directory: "#{ENV['RZ_TEST_REPORTS']}/xcov",
-      # Add targets here as you create internal frameworks
-      include_targets: "debug-{{ cookiecutter.project_name | replace(' ', '') }}.app, Services.framework",
+      include_targets: xcov_targets,
       derived_data_path: DERIVED_DATA_PATH
     )
 
     slather_proj = "{{ cookiecutter.project_name | replace(' ', '') }}.xcodeproj"
     slather_workspace = xcov_workspace
     # Only the Services scheme seems to work. It cannot find our app target schemes. 
-    slather_scheme = "Services"
+    slather_scheme = TEST_SCHEME
+    # Add binaries here as you create internal frameworks
+    slather_binaries = ['debug-{{ cookiecutter.project_name | replace(' ', '') }}', 'Services']
     slather_output_directory = "#{ENV['RZ_TEST_REPORTS']}/slather"
 
     # html and cobertura_xml output must be run separately
@@ -76,6 +79,7 @@ platform :ios do
       proj: slather_proj,
       workspace: slather_workspace,
       scheme: slather_scheme,
+      binary_basename: slather_binaries,
       output_directory: slather_output_directory,
       html: "true",
       build_directory: DERIVED_DATA_PATH
@@ -86,6 +90,7 @@ platform :ios do
       proj: slather_proj,
       workspace: slather_workspace,
       scheme: slather_scheme,
+      binary_basename: slather_binaries,
       output_directory: slather_output_directory,
       circleci: slather_use_circleci,
       coveralls: slather_use_coveralls,
