@@ -74,6 +74,12 @@ jobs:
           when: always
           command: |
             bundle exec danger --dangerfile=PRODUCTNAME/Dangerfile
+      - run:
+          name: Post Screenshots to Slack
+          when: always
+          command: |
+            cd PRODUCTNAME/app
+            bundle exec fastlane slackshots
 
   test-xcode-9-3:
     macos:

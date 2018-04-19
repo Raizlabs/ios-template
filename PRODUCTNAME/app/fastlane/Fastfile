@@ -1,5 +1,7 @@
 fastlane_version "2.90.0"
 
+fastlane_require 'circleci_artifact'
+
 default_platform :ios
 
 # Set by build environment
@@ -96,6 +98,35 @@ platform :ios do
       cobertura_xml: "true",
       build_directory: DERIVED_DATA_PATH
     )
+  end
+
+  desc "Posts screenshots to Slack"
+  lane :slackshots do
+    # Getting artifact URLs from CircleCI
+
+    # You must set up the CIRCLE_API_TOKEN manually using these instructions
+    # https://github.com/Raizlabs/ios-template/tree/master/PRODUCTNAME#danger
+    token = ENV['CIRCLE_API_TOKEN']
+    # These are already in the Circle environment
+    # https://circleci.com/docs/2.0/env-vars/#build-specific-environment-variables
+    username = ENV['CIRCLE_PROJECT_USERNAME']
+    reponame = ENV['CIRCLE_PROJECT_REPONAME']
+    build = ENV['CIRCLE_BUILD_NUM']
+
+    if !(token.nil? or username.nil? or reponame.nil? or build.nil?)
+      fetcher = CircleciArtifact::Fetcher.new(token: token, username: username, reponame: reponame, build: build)
+      screenshots = CircleciArtifact::Query.new(url_substring: 'screenshots/screenshots.html')
+      queries = [screenshots]
+      results = fetcher.fetch_queries(queries)
+      screenshots_url = results.url_for_query(screenshots)
+      if !screenshots_url.nil?
+        slack(message: "[Screenshots](#{screenshots_url})", success: true)
+      else
+        slack(message: "Screenshots are missing!", success: false)
+      end
+    else
+      slack(message: "Missing CircleCI artifacts. Most likely the [CIRCLE_API_TOKEN](https://github.com/Raizlabs/circleci_artifact#getting-started) is not set, or not running on CircleCI.", success: false)
+    end
   end
 
   desc "Builds and submits a Develop release to Hockey"

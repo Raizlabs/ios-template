@@ -77,6 +77,12 @@ jobs:
           when: always
           command: |
             bundle exec danger
+      - run:
+          name: Post Screenshots to Slack
+          when: always
+          command: |
+            cd app
+            bundle exec fastlane slackshots
             
   integration:
     macos:
