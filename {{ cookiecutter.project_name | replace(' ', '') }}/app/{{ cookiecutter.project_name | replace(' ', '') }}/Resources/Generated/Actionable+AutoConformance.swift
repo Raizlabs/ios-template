@@ -3,14 +3,14 @@
 
 
 
-//swiftlint:disable:previous vertical_whitespace
+
 
 // MARK: - AuthCoordinator
-protocol AuthCoordinatorDelegate: class {
+internal protocol AuthCoordinatorDelegate: class {
     func authCoordinator(_ coordinator: AuthCoordinator, didNotify action: AuthCoordinator.Action)
 }
 
-extension AuthCoordinator {
+internal extension AuthCoordinator {
 
     typealias ActionType = Action
     typealias Delegate = AuthCoordinatorDelegate
@@ -22,11 +22,11 @@ extension AuthCoordinator {
 }
 
 // MARK: - OnboardingCoordinator
-protocol OnboardingCoordinatorDelegate: class {
+internal protocol OnboardingCoordinatorDelegate: class {
     func onboardingCoordinator(_ coordinator: OnboardingCoordinator, didNotify action: OnboardingCoordinator.Action)
 }
 
-extension OnboardingCoordinator {
+internal extension OnboardingCoordinator {
 
     typealias ActionType = Action
     typealias Delegate = OnboardingCoordinatorDelegate
@@ -38,11 +38,11 @@ extension OnboardingCoordinator {
 }
 
 // MARK: - OnboardingPageViewController
-protocol OnboardingPageViewControllerDelegate: class {
+internal protocol OnboardingPageViewControllerDelegate: class {
     func onboardingPageViewController(_ vc: OnboardingPageViewController, didNotify action: OnboardingPageViewController.Action)
 }
 
-extension OnboardingPageViewController {
+internal extension OnboardingPageViewController {
 
     typealias ActionType = Action
     typealias Delegate = OnboardingPageViewControllerDelegate
@@ -54,11 +54,11 @@ extension OnboardingPageViewController {
 }
 
 // MARK: - SignInCoordinator
-protocol SignInCoordinatorDelegate: class {
+internal protocol SignInCoordinatorDelegate: class {
     func signInCoordinator(_ coordinator: SignInCoordinator, didNotify action: SignInCoordinator.Action)
 }
 
-extension SignInCoordinator {
+internal extension SignInCoordinator {
 
     typealias ActionType = Action
     typealias Delegate = SignInCoordinatorDelegate
