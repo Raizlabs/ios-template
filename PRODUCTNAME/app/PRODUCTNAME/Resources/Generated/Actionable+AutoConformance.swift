@@ -3,7 +3,7 @@
 
 
 
-//swiftlint:disable:previous vertical_whitespace
+
 
 // MARK: - AuthCoordinator
 protocol AuthCoordinatorDelegate: class {

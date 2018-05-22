@@ -18,6 +18,7 @@
 		2D75C6C71E8EEAE900F2EB1D /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF1CEC1E8944B900B1AD70 /* OnboardingCoordinator.swift */; };
 		2D75C6C81E8EEB1900F2EB1D /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4FA8F81E8577B5006C38ED /* AuthCoordinator.swift */; };
 		2DAB59F81E95336100310ABF /* OnboardingSamplePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAB59F71E95336100310ABF /* OnboardingSamplePageViewModel.swift */; };
+		2DE7DAA520B4671A00CB51F2 /* Actionable+Helpers.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 2DE7DAA420B4671A00CB51F2 /* Actionable+Helpers.swifttemplate */; };
 		2DFF1CEF1E89493300B1AD70 /* SignInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF1CEE1E89493300B1AD70 /* SignInCoordinator.swift */; };
 		2DFF1CF11E8950F000B1AD70 /* ContentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF1CF01E8950F000B1AD70 /* ContentCoordinator.swift */; };
 		2DFF1D121E8BE27B00B1AD70 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF1D111E8BE27B00B1AD70 /* OnboardingPageViewController.swift */; };
@@ -146,6 +147,7 @@
 		2D4FA8F61E85752B006C38ED /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		2D4FA8F81E8577B5006C38ED /* AuthCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		2DAB59F71E95336100310ABF /* OnboardingSamplePageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSamplePageViewModel.swift; sourceTree = "<group>"; };
+		2DE7DAA420B4671A00CB51F2 /* Actionable+Helpers.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Actionable+Helpers.swifttemplate"; sourceTree = "<group>"; };
 		2DFF1CEC1E8944B900B1AD70 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		2DFF1CEE1E89493300B1AD70 /* SignInCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInCoordinator.swift; sourceTree = "<group>"; };
 		2DFF1CF01E8950F000B1AD70 /* ContentCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCoordinator.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				209BE2552051C90C004CF0FF /* Actionable.swifttemplate */,
+				2DE7DAA420B4671A00CB51F2 /* Actionable+Helpers.swifttemplate */,
 			);
 			path = Sourcery;
 			sourceTree = "<group>";
@@ -816,6 +819,7 @@
 				ABF84F811DC97653002DB24D /* Localizable.strings in Resources */,
 				ABC778831DC90B7A00815FB9 /* LaunchScreen.storyboard in Resources */,
 				ABC778801DC90B7A00815FB9 /* Assets.xcassets in Resources */,
+				2DE7DAA520B4671A00CB51F2 /* Actionable+Helpers.swifttemplate in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
