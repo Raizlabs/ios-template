@@ -11,14 +11,14 @@
 		0055142620615F9D00E4CF68 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0055142520615F9C00E4CF68 /* Storyboards.swift */; };
 		006EFEF61F264204004A95DE /* TestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EFEF51F264204004A95DE /* TestClient.swift */; };
 		209BE2512051C768004CF0FF /* Actionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209BE2502051C768004CF0FF /* Actionable.swift */; };
-		209BE2562051C90C004CF0FF /* Actionable.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 209BE2552051C90C004CF0FF /* Actionable.swifttemplate */; };
 		209BE2592051CB4B004CF0FF /* Actionable+AutoConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209BE2582051CB4B004CF0FF /* Actionable+AutoConformance.swift */; };
+		2D1D91A520C06930007D7808 /* Actionable.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 2DE7DAAA20B4686000CB51F2 /* Actionable.swifttemplate */; };
+		2D1D91A620C06932007D7808 /* Actionable+Helpers.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 2DE7DAAC20B4687F00CB51F2 /* Actionable+Helpers.swifttemplate */; };
 		2D4FA8F51E8574F9006C38ED /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4FA8F41E8574F9006C38ED /* AppCoordinator.swift */; };
 		2D4FA8F71E85752B006C38ED /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4FA8F61E85752B006C38ED /* Coordinator.swift */; };
 		2D75C6C71E8EEAE900F2EB1D /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF1CEC1E8944B900B1AD70 /* OnboardingCoordinator.swift */; };
 		2D75C6C81E8EEB1900F2EB1D /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4FA8F81E8577B5006C38ED /* AuthCoordinator.swift */; };
 		2DAB59F81E95336100310ABF /* OnboardingSamplePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAB59F71E95336100310ABF /* OnboardingSamplePageViewModel.swift */; };
-		2DE7DAA520B4671A00CB51F2 /* Actionable+Helpers.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 2DE7DAA420B4671A00CB51F2 /* Actionable+Helpers.swifttemplate */; };
 		2DE7DAA920B4684500CB51F2 /* Actionable+AutoConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE7DAA820B4684500CB51F2 /* Actionable+AutoConformance.swift */; };
 		2DE7DAAB20B4686000CB51F2 /* Actionable.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 2DE7DAAA20B4686000CB51F2 /* Actionable.swifttemplate */; };
 		2DE7DAAD20B4687F00CB51F2 /* Actionable+Helpers.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 2DE7DAAC20B4687F00CB51F2 /* Actionable+Helpers.swifttemplate */; };
@@ -145,13 +145,11 @@
 		18117B6A27EAD54897E61F7E /* Pods-PRODUCTNAME-PRODUCTNAMETests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PRODUCTNAME-PRODUCTNAMETests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PRODUCTNAME-PRODUCTNAMETests/Pods-PRODUCTNAME-PRODUCTNAMETests.develop.xcconfig"; sourceTree = "<group>"; };
 		1FE712F80AD5930EEAA24325 /* Pods-Services.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Services.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-Services/Pods-Services.appstore.xcconfig"; sourceTree = "<group>"; };
 		209BE2502051C768004CF0FF /* Actionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actionable.swift; sourceTree = "<group>"; };
-		209BE2552051C90C004CF0FF /* Actionable.swifttemplate */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Actionable.swifttemplate; sourceTree = "<group>"; };
 		209BE2582051CB4B004CF0FF /* Actionable+AutoConformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Actionable+AutoConformance.swift"; sourceTree = "<group>"; };
 		2D4FA8F41E8574F9006C38ED /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		2D4FA8F61E85752B006C38ED /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		2D4FA8F81E8577B5006C38ED /* AuthCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		2DAB59F71E95336100310ABF /* OnboardingSamplePageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSamplePageViewModel.swift; sourceTree = "<group>"; };
-		2DE7DAA420B4671A00CB51F2 /* Actionable+Helpers.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Actionable+Helpers.swifttemplate"; sourceTree = "<group>"; };
 		2DE7DAA820B4684500CB51F2 /* Actionable+AutoConformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Actionable+AutoConformance.swift"; sourceTree = "<group>"; };
 		2DE7DAAA20B4686000CB51F2 /* Actionable.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = Actionable.swifttemplate; sourceTree = "<group>"; };
 		2DE7DAAC20B4687F00CB51F2 /* Actionable+Helpers.swifttemplate */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Actionable+Helpers.swifttemplate"; sourceTree = "<group>"; };
@@ -292,15 +290,6 @@
 				209BE2502051C768004CF0FF /* Actionable.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		209BE2522051C7BB004CF0FF /* Sourcery */ = {
-			isa = PBXGroup;
-			children = (
-				209BE2552051C90C004CF0FF /* Actionable.swifttemplate */,
-				2DE7DAA420B4671A00CB51F2 /* Actionable+Helpers.swifttemplate */,
-			);
-			path = Sourcery;
 			sourceTree = "<group>";
 		};
 		2D4FA8F31E8574D2006C38ED /* Coordinators */ = {
@@ -568,7 +557,6 @@
 			isa = PBXGroup;
 			children = (
 				ABF84F8E1DC99D33002DB24D /* Generated */,
-				209BE2522051C7BB004CF0FF /* Sourcery */,
 				ABC778CD1DC92BC200815FB9 /* xcconfig */,
 				ABC778DC1DC94EE500815FB9 /* Acknowledgements.plist */,
 				ABC7787F1DC90B7A00815FB9 /* Assets.xcassets */,
@@ -854,11 +842,11 @@
 			files = (
 				ABC778DD1DC94EE500815FB9 /* Acknowledgements.plist in Resources */,
 				00551422206144E300E4CF68 /* InfoPlist.strings in Resources */,
-				209BE2562051C90C004CF0FF /* Actionable.swifttemplate in Resources */,
 				ABF84F811DC97653002DB24D /* Localizable.strings in Resources */,
+				2D1D91A520C06930007D7808 /* Actionable.swifttemplate in Resources */,
 				ABC778831DC90B7A00815FB9 /* LaunchScreen.storyboard in Resources */,
 				ABC778801DC90B7A00815FB9 /* Assets.xcassets in Resources */,
-				2DE7DAA520B4671A00CB51F2 /* Actionable+Helpers.swifttemplate in Resources */,
+				2D1D91A620C06932007D7808 /* Actionable+Helpers.swifttemplate in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -919,7 +907,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -x \"$PODS_ROOT/Sourcery/bin/sourcery\" ]; then\n\"$PODS_ROOT/Sourcery/bin/sourcery\" --sources \"PRODUCTNAME\" --templates \"PRODUCTNAME/Resources/Sourcery/Actionable.swifttemplate\" --output \"PRODUCTNAME/Resources/Generated/Actionable+AutoConformance.swift\"\nfi";
+			shellScript = "if [ -x \"$PODS_ROOT/Sourcery/bin/sourcery\" ]; then\n\"$PODS_ROOT/Sourcery/bin/sourcery\" --sources \"PRODUCTNAME\" --templates \"Services/Resources/Sourcery/Actionable.swifttemplate\" --output \"PRODUCTNAME/Resources/Generated/Actionable+AutoConformance.swift\"\nfi";
 		};
 		2DE7DAAE20B4689C00CB51F2 /* Sourcery (Actionable) */ = {
 			isa = PBXShellScriptBuildPhase;
