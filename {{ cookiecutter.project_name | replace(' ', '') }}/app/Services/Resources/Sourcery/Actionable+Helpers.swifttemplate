@@ -1,6 +1,11 @@
 <%_
 func variableName(for type: Type) -> String {
-    let lookups = ["ViewController": "vc", "View": "view", "Cell": "cell", "Service": "service"]
+    let lookups = [
+        "Cell": "cell",
+        "Coordinator": "coordinator",
+        "View": "view",
+        "ViewController": "vc",
+        "Service": "service"]
     for (suffix, specialName) in lookups {
         if type.name.hasSuffix(suffix) {
             return specialName

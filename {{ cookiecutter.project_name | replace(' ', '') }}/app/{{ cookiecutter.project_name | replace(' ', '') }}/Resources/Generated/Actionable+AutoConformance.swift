@@ -8,7 +8,7 @@
 // MARK: - AuthCoordinator
 internal protocol AuthCoordinatorDelegate: class {
 
-    func authCoordinator(_ component: AuthCoordinator, didNotify action: AuthCoordinator.Action)
+    func authCoordinator(_ coordinator: AuthCoordinator, didNotify action: AuthCoordinator.Action)
 
 }
 
@@ -31,7 +31,7 @@ internal extension AuthCoordinator {
 // MARK: - OnboardingCoordinator
 internal protocol OnboardingCoordinatorDelegate: class {
 
-    func onboardingCoordinator(_ component: OnboardingCoordinator, didNotify action: OnboardingCoordinator.Action)
+    func onboardingCoordinator(_ coordinator: OnboardingCoordinator, didNotify action: OnboardingCoordinator.Action)
 
 }
 
@@ -77,7 +77,7 @@ internal extension OnboardingPageViewController {
 // MARK: - SignInCoordinator
 internal protocol SignInCoordinatorDelegate: class {
 
-    func signInCoordinator(_ component: SignInCoordinator, didNotify action: SignInCoordinator.Action)
+    func signInCoordinator(_ coordinator: SignInCoordinator, didNotify action: SignInCoordinator.Action)
 
 }
 
