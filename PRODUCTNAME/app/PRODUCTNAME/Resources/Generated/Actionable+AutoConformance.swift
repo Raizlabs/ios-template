@@ -7,7 +7,9 @@
 
 // MARK: - AuthCoordinator
 internal protocol AuthCoordinatorDelegate: class {
-    func authCoordinator(_ coordinator: AuthCoordinator, didNotify action: AuthCoordinator.Action)
+
+    func authCoordinator(_ component: AuthCoordinator, didNotify action: AuthCoordinator.Action)
+
 }
 
 internal extension AuthCoordinator {
@@ -19,11 +21,18 @@ internal extension AuthCoordinator {
         delegate?.authCoordinator(self, didNotify: action)
     }
 
+    func with(delegate: Delegate) -> Self {
+        self.delegate = delegate
+        return self
+    }
+
 }
 
 // MARK: - OnboardingCoordinator
 internal protocol OnboardingCoordinatorDelegate: class {
-    func onboardingCoordinator(_ coordinator: OnboardingCoordinator, didNotify action: OnboardingCoordinator.Action)
+
+    func onboardingCoordinator(_ component: OnboardingCoordinator, didNotify action: OnboardingCoordinator.Action)
+
 }
 
 internal extension OnboardingCoordinator {
@@ -35,11 +44,18 @@ internal extension OnboardingCoordinator {
         delegate?.onboardingCoordinator(self, didNotify: action)
     }
 
+    func with(delegate: Delegate) -> Self {
+        self.delegate = delegate
+        return self
+    }
+
 }
 
 // MARK: - OnboardingPageViewController
 internal protocol OnboardingPageViewControllerDelegate: class {
+
     func onboardingPageViewController(_ vc: OnboardingPageViewController, didNotify action: OnboardingPageViewController.Action)
+
 }
 
 internal extension OnboardingPageViewController {
@@ -51,11 +67,18 @@ internal extension OnboardingPageViewController {
         delegate?.onboardingPageViewController(self, didNotify: action)
     }
 
+    func with(delegate: Delegate) -> Self {
+        self.delegate = delegate
+        return self
+    }
+
 }
 
 // MARK: - SignInCoordinator
 internal protocol SignInCoordinatorDelegate: class {
-    func signInCoordinator(_ coordinator: SignInCoordinator, didNotify action: SignInCoordinator.Action)
+
+    func signInCoordinator(_ component: SignInCoordinator, didNotify action: SignInCoordinator.Action)
+
 }
 
 internal extension SignInCoordinator {
@@ -67,4 +90,10 @@ internal extension SignInCoordinator {
         delegate?.signInCoordinator(self, didNotify: action)
     }
 
+    func with(delegate: Delegate) -> Self {
+        self.delegate = delegate
+        return self
+    }
+
 }
+
