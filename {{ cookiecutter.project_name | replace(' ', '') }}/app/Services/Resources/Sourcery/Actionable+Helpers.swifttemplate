@@ -1,41 +1,48 @@
 <%_
-func variableName(fromTypeName typeName: String) -> String {
-if typeName.hasSuffix("Coordinator") { return "coordinator" }
-else if typeName.hasSuffix("ViewController") { return "vc" }
-else if typeName.hasSuffix("View") { return "view" }
-else { return "component" }
+func variableName(for type: Type) -> String {
+    let lookups = ["ViewController": "vc", "View": "view", "Cell": "cell", "Service": "service"]
+    for (suffix, specialName) in lookups {
+        if type.name.hasSuffix(suffix) {
+            return specialName
+        }
+    }
+    return "component"
 }
 
-/// Lowercases the first camel-case group of a type name
-///
-/// - Parameter input: The name of a type
-/// - Returns: The name of the type with the first camel-case group lowercased.
-/// Examples:
-///  - lowerThingy → lowerThingy
-///  - FooViewController → fooViewController
-///  - ABCViewController → abcViewController
+func delegateName(for type: Type) -> String {
+    var delegateName = "\(type.localName)Delegate"
+    var currentType = type
+    while let parent = currentType.parent {
+        delegateName = "\(parent.localName)\(delegateName)"
+        currentType = parent
+    }
+    return delegateName
+}
+
 func lowerFirstCamelCaseGroup(_ input: String) -> String {
-guard !input.isEmpty else { return "" }
-let firstCapitals = input.prefix { character in
-return character.unicodeScalars.contains { unicodeScalar in
-CharacterSet.uppercaseLetters.contains(unicodeScalar)
-}
-}
+    guard !input.isEmpty else { return "" }
+    let firstCapitals = input.prefix { character in
+        return character.unicodeScalars.contains { unicodeScalar in
+            CharacterSet.uppercaseLetters.contains(unicodeScalar)
+        }
+    }
 
-guard !firstCapitals.isEmpty else {
-return input
-}
+    guard !firstCapitals.isEmpty else {
+        return input
+    }
 
-let newPrefix: String
+    let newPrefix: String
 
-if firstCapitals.count == 1 {
-newPrefix = firstCapitals.lowercased()
+    if firstCapitals.count == 1 {
+        newPrefix = firstCapitals.lowercased()
+    }
+    else {
+        newPrefix = "\(firstCapitals.dropLast().lowercased())\(firstCapitals.last!)"
+    }
+
+    var updated = input
+    let range = updated.range(of: firstCapitals)!
+    updated.replaceSubrange(range, with: newPrefix)
+    return updated
 }
-else {
-newPrefix = "\(firstCapitals.dropLast().lowercased())\(firstCapitals.last!)"
-}
-var updated = input
-let range = updated.range(of: firstCapitals)!
-updated.replaceSubrange(range, with: newPrefix)
-return updated
-} _%>
+_%>
