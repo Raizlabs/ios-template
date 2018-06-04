@@ -19,11 +19,6 @@ let delegate = delegateName(for: type) _%>
         delegate?.<%= lowerFirstTypeName %>(self, didNotify: action)
     }
 
-    func with(delegate: Delegate) -> Self {
-        self.delegate = delegate
-        return self
-    }
-
 }
 <%_
 }

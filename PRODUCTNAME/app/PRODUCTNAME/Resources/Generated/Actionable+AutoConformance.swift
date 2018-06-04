@@ -21,11 +21,6 @@ internal extension AuthCoordinator {
         delegate?.authCoordinator(self, didNotify: action)
     }
 
-    func with(delegate: Delegate) -> Self {
-        self.delegate = delegate
-        return self
-    }
-
 }
 
 // MARK: - OnboardingCoordinator
@@ -42,11 +37,6 @@ internal extension OnboardingCoordinator {
 
     func notify(_ action: ActionType) {
         delegate?.onboardingCoordinator(self, didNotify: action)
-    }
-
-    func with(delegate: Delegate) -> Self {
-        self.delegate = delegate
-        return self
     }
 
 }
@@ -67,11 +57,6 @@ internal extension OnboardingPageViewController {
         delegate?.onboardingPageViewController(self, didNotify: action)
     }
 
-    func with(delegate: Delegate) -> Self {
-        self.delegate = delegate
-        return self
-    }
-
 }
 
 // MARK: - SignInCoordinator
@@ -88,11 +73,6 @@ internal extension SignInCoordinator {
 
     func notify(_ action: ActionType) {
         delegate?.signInCoordinator(self, didNotify: action)
-    }
-
-    func with(delegate: Delegate) -> Self {
-        self.delegate = delegate
-        return self
     }
 
 }
