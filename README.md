@@ -25,8 +25,6 @@ $ cookiecutter https://github.com/Raizlabs/ios-template/archive/master.zip
 
 ### Template Output
 
-[![CircleCI](https://img.shields.io/circleci/project/github/Raizlabs/ios-template-output/master.svg)](https://circleci.com/gh/Raizlabs/ios-template-output)
-
 Pushing updates to this repository triggers CircleCI to build a blank template and push the result to the [ios-template-output](https://github.com/Raizlabs/ios-template-output) repository. If the badge above is failing, most likely there is a problem with the inner CircleCI script located in `PRODUCTNAME/.circleci/config.yml`.
 
 ## What's in the template?
