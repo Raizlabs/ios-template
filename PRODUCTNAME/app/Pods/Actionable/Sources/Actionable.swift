@@ -1,19 +1,20 @@
 //
 //  Actionable.swift
-//  PRODUCTNAME
+//  Actionable
 //
-//  Created by LEADDEVELOPER on 3/8/18.
-//  Copyright © 2018 ORGANIZATION. All rights reserved.
+//  Created by Rightpoint on 2/13/19.
 //
 
-protocol Actionable: class {
+import UIKit
+
+public protocol Actionable: class {
     associatedtype ActionType
     associatedtype Delegate
 
     func notify(_ action: ActionType)
 }
 
-extension Actionable {
+public extension Actionable {
 
     func notify(_ action: ActionType) -> () -> Void {
         return { [weak self] in

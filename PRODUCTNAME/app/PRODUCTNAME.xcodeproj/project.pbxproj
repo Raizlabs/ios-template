@@ -10,8 +10,6 @@
 		00551422206144E300E4CF68 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00551421206144E200E4CF68 /* InfoPlist.strings */; };
 		0055142620615F9D00E4CF68 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0055142520615F9C00E4CF68 /* Storyboards.swift */; };
 		006EFEF61F264204004A95DE /* TestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006EFEF51F264204004A95DE /* TestClient.swift */; };
-		209BE2512051C768004CF0FF /* Actionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209BE2502051C768004CF0FF /* Actionable.swift */; };
-		209BE2562051C90C004CF0FF /* actionable.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 209BE2552051C90C004CF0FF /* actionable.swifttemplate */; };
 		209BE2592051CB4B004CF0FF /* Actionable+AutoConformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209BE2582051CB4B004CF0FF /* Actionable+AutoConformance.swift */; };
 		2D4FA8F51E8574F9006C38ED /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4FA8F41E8574F9006C38ED /* AppCoordinator.swift */; };
 		2D4FA8F71E85752B006C38ED /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4FA8F61E85752B006C38ED /* Coordinator.swift */; };
@@ -139,8 +137,6 @@
 		17DC86D175CE0686878A3A82 /* Pods-PRODUCTNAME-PRODUCTNAMETests.sprint.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PRODUCTNAME-PRODUCTNAMETests.sprint.xcconfig"; path = "Pods/Target Support Files/Pods-PRODUCTNAME-PRODUCTNAMETests/Pods-PRODUCTNAME-PRODUCTNAMETests.sprint.xcconfig"; sourceTree = "<group>"; };
 		18117B6A27EAD54897E61F7E /* Pods-PRODUCTNAME-PRODUCTNAMETests.develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PRODUCTNAME-PRODUCTNAMETests.develop.xcconfig"; path = "Pods/Target Support Files/Pods-PRODUCTNAME-PRODUCTNAMETests/Pods-PRODUCTNAME-PRODUCTNAMETests.develop.xcconfig"; sourceTree = "<group>"; };
 		1FE712F80AD5930EEAA24325 /* Pods-Services.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Services.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-Services/Pods-Services.appstore.xcconfig"; sourceTree = "<group>"; };
-		209BE2502051C768004CF0FF /* Actionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actionable.swift; sourceTree = "<group>"; };
-		209BE2552051C90C004CF0FF /* actionable.swifttemplate */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = actionable.swifttemplate; sourceTree = "<group>"; };
 		209BE2582051CB4B004CF0FF /* Actionable+AutoConformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Actionable+AutoConformance.swift"; sourceTree = "<group>"; };
 		2D4FA8F41E8574F9006C38ED /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		2D4FA8F61E85752B006C38ED /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -234,7 +230,7 @@
 		CD09C93B20741945006D3501 /* Screenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Screenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD09C93D20741945006D3501 /* Screenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
 		CD09C93F20741945006D3501 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CD09C94920741B24006D3501 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		CD09C94920741B24006D3501 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		CD09C94C207428AE006D3501 /* StatusBarConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarConfiguration.swift; sourceTree = "<group>"; };
 		D7F90A3B2F8D15AE9564FF78 /* Pods-Services.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Services.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Services/Pods-Services.debug.xcconfig"; sourceTree = "<group>"; };
 		DCD1E696B5452D855D78934E /* Pods-PRODUCTNAME.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PRODUCTNAME.release.xcconfig"; path = "Pods/Target Support Files/Pods-PRODUCTNAME/Pods-PRODUCTNAME.release.xcconfig"; sourceTree = "<group>"; };
@@ -276,22 +272,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		209BE24F2051C758004CF0FF /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				209BE2502051C768004CF0FF /* Actionable.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		209BE2522051C7BB004CF0FF /* Sourcery */ = {
-			isa = PBXGroup;
-			children = (
-				209BE2552051C90C004CF0FF /* actionable.swifttemplate */,
-			);
-			path = Sourcery;
-			sourceTree = "<group>";
-		};
 		2D4FA8F31E8574D2006C38ED /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,7 +338,6 @@
 			isa = PBXGroup;
 			children = (
 				861732D11FA28DB600C14354 /* Behaviors */,
-				209BE24F2051C758004CF0FF /* Protocols */,
 				861732EE1FA2984600C14354 /* Representable */,
 				861732D61FA290F400C14354 /* Views */,
 			);
@@ -529,7 +508,6 @@
 			isa = PBXGroup;
 			children = (
 				ABF84F8E1DC99D33002DB24D /* Generated */,
-				209BE2522051C7BB004CF0FF /* Sourcery */,
 				ABC778CD1DC92BC200815FB9 /* xcconfig */,
 				ABC778DC1DC94EE500815FB9 /* Acknowledgements.plist */,
 				ABC7787F1DC90B7A00815FB9 /* Assets.xcassets */,
@@ -643,7 +621,6 @@
 			children = (
 				CD09C94920741B24006D3501 /* SnapshotHelper.swift */,
 			);
-			name = Helpers;
 			path = Helpers;
 			sourceTree = "<group>";
 		};
@@ -687,7 +664,7 @@
 				5BD18785D9BC5E2781EBCD52 /* [CP] Check Pods Manifest.lock */,
 				2DFF1D1F1E8C56C700B1AD70 /* SwiftGen */,
 				ABC778DB1DC9405700815FB9 /* SwiftLint */,
-				209BE2572051C936004CF0FF /* Sourcery */,
+				209BE2572051C936004CF0FF /* Actionable */,
 				0052FE8220605B3A0058A4BC /* Generate xcconfig warnings */,
 				ABC778711DC90B7A00815FB9 /* Sources */,
 				ABC778721DC90B7A00815FB9 /* Frameworks */,
@@ -813,7 +790,6 @@
 			files = (
 				ABC778DD1DC94EE500815FB9 /* Acknowledgements.plist in Resources */,
 				00551422206144E300E4CF68 /* InfoPlist.strings in Resources */,
-				209BE2562051C90C004CF0FF /* actionable.swifttemplate in Resources */,
 				ABF84F811DC97653002DB24D /* Localizable.strings in Resources */,
 				ABC778831DC90B7A00815FB9 /* LaunchScreen.storyboard in Resources */,
 				ABC778801DC90B7A00815FB9 /* Assets.xcassets in Resources */,
@@ -865,19 +841,19 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ ${FABRIC_API_KEY} != \"xxxxxx\" ]; then\nif [ \"${CONFIGURATION}\" != \"Debug\" ]; then\n\"${PODS_ROOT}/Fabric/run\" ${FABRIC_API_KEY} ${FABRIC_BUILD_SECRET}\nfi\nfi";
 		};
-		209BE2572051C936004CF0FF /* Sourcery */ = {
+		209BE2572051C936004CF0FF /* Actionable */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = Sourcery;
+			name = Actionable;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -x \"$PODS_ROOT/Sourcery/bin/sourcery\" ]; then\n\"$PODS_ROOT/Sourcery/bin/sourcery\" --sources \"PRODUCTNAME\" --templates \"PRODUCTNAME/Resources/Sourcery/actionable.swifttemplate\" --output \"PRODUCTNAME/Resources/Generated/Actionable+AutoConformance.swift\"\nfi";
+			shellScript = "\"$PODS_ROOT/Actionable/actionable.sh\" -i \"PRODUCTNAME\" -o \"PRODUCTNAME/Resources/Generated/Actionable+AutoConformance.swift\"";
 		};
 		2DFF1D1F1E8C56C700B1AD70 /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -900,6 +876,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PRODUCTNAME/Pods-PRODUCTNAME-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Actionable/Actionable.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Anchorage/Anchorage.framework",
 				"${BUILT_PRODUCTS_DIR}/BonMot/BonMot.framework",
@@ -912,6 +889,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Actionable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Anchorage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BonMot.framework",
@@ -934,6 +912,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PRODUCTNAME-PRODUCTNAMETests/Pods-PRODUCTNAME-PRODUCTNAMETests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Actionable/Actionable.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Anchorage/Anchorage.framework",
 				"${BUILT_PRODUCTS_DIR}/BonMot/BonMot.framework",
@@ -947,6 +926,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Actionable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Anchorage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BonMot.framework",
@@ -1086,7 +1066,6 @@
 				ABF84F911DC99D33002DB24D /* Localized.swift in Sources */,
 				861732D41FA28DB600C14354 /* HideBackButtonTextBehavior.swift in Sources */,
 				ABC778E81DC9503600815FB9 /* InstabugConfiguration.swift in Sources */,
-				209BE2512051C768004CF0FF /* Actionable.swift in Sources */,
 				BE28092B1E802893006E50D5 /* AnalyticsPageNames.swift in Sources */,
 				ABC778E61DC94FFC00815FB9 /* CrashlyticsConfiguration.swift in Sources */,
 				0055142620615F9D00E4CF68 /* Storyboards.swift in Sources */,
