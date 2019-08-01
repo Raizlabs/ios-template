@@ -2,8 +2,8 @@
 //  AppCoordinator.swift
 //  PRODUCTNAME
 //
-//  Created by LEADDEVELOPER on TODAYSDATE.
-//  Copyright © THISYEAR ORGANIZATION. All rights reserved.
+//  Created by LEADDEVELOPER on 3/24/17.
+//  Copyright © 2017 ORGANIZATION. All rights reserved.
 //
 
 import UIKit
@@ -18,7 +18,7 @@ class AppCoordinator: Coordinator {
     init(window: UIWindow) {
         self.window = window
         let rootController = UIViewController()
-        rootController.view.backgroundColor = .white
+        rootController.view.backgroundColor = Asset.Colors.backgroundPrimary.color
         self.rootController = rootController
     }
 

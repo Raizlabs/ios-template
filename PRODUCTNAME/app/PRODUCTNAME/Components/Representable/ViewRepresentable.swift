@@ -2,10 +2,10 @@
 //  ViewRepresentable.swift
 //  PRODUCTNAME
 //
-//  Created by LEADDEVELOPER on TODAYSDATE.
-//  Copyright © THISYEAR ORGANIZATION. All rights reserved.
+//  Created by LEADDEVELOPER on 6/5/17.
 //
 
+//
 public protocol ViewRepresentable: AnyViewRepresentable {
     associatedtype View: UIView
     func makeView() -> View

@@ -2,8 +2,8 @@
 //  TableCellItem.swift
 //  PRODUCTNAME
 //
-//  Created by LEADDEVELOPER on TODAYSDATE.
-//  Copyright © THISYEAR ORGANIZATION. All rights reserved.
+//  Created by LEADDEVELOPER on 7/10/17.
+//
 //
 
 import UIKit

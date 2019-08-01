@@ -2,8 +2,8 @@
 //  DebugTextStyleViewController.swift
 //  PRODUCTNAME
 //
-//  Created by LEADDEVELOPER on TODAYSDATE.
-//  Copyright © THISYEAR ORGANIZATION. All rights reserved.
+//  Created by LEADDEVELOPER on 10/25/17.
+//  Copyright © 2017 ORGANIZATION. All rights reserved.
 //
 
 import Foundation
@@ -40,7 +40,7 @@ final class DebugTextStyleViewController: UIViewController {
 
         title = "Text Styles"
 
-        view.backgroundColor = .white
+        view.backgroundColor = Asset.Colors.backgroundPrimary.color
 
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)

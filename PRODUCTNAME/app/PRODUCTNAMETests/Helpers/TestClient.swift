@@ -2,8 +2,8 @@
 //  TestClient.swift
 //  PRODUCTNAME
 //
-//  Created by LEADDEVELOPER on TODAYSDATE.
-//  Copyright © THISYEAR ORGANIZATION. All rights reserved.
+//  Created by LEADDEVELOPER on 7/24/17.
+//
 //
 
 import Foundation

@@ -2,8 +2,8 @@
 //  SignInCoordinator.swift
 //  {{ cookiecutter.project_name | replace(' ', '') }}
 //
-//  Created by {{ cookiecutter.lead_dev }} on {% now 'utc', '%D' %}.
-//  Copyright © {% now 'utc', '%Y' %} {{ cookiecutter.company_name }}. All rights reserved.
+//  Created by {{ cookiecutter.lead_dev }} on 3/27/17.
+//  Copyright © 2017 {{ cookiecutter.company_name }}. All rights reserved.
 //
 
 import UIKit
@@ -22,7 +22,7 @@ class SignInCoordinator: Coordinator {
     func start(animated: Bool, completion: VoidClosure?) {
         // TODO - create and use SignInViewController
         let vc = UIViewController()
-        vc.view.backgroundColor = .red
+        vc.view.backgroundColor = Asset.Colors.backgroundWarning.color
         self.baseController.present(vc, animated: animated, completion: completion)
     }
 

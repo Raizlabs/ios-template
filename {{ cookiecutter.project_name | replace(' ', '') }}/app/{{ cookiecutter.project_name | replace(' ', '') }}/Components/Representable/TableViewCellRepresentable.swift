@@ -2,8 +2,8 @@
 //  TableViewCellRepresentable.swift
 //  {{ cookiecutter.project_name | replace(' ', '') }}
 //
-//  Created by {{ cookiecutter.lead_dev }} on {% now 'utc', '%D' %}.
-//  Copyright © {% now 'utc', '%Y' %} {{ cookiecutter.company_name }}. All rights reserved.
+//  Created by {{ cookiecutter.lead_dev }} on 6/6/17.
+//
 //
 
 import UIKit

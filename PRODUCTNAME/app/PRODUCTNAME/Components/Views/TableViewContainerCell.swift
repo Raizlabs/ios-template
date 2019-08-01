@@ -2,8 +2,8 @@
 //  TableViewContainerCell.swift
 //  PRODUCTNAME
 //
-//  Created by LEADDEVELOPER on TODAYSDATE.
-//  Copyright © THISYEAR ORGANIZATION. All rights reserved.
+//  Created by LEADDEVELOPER on 6/6/17.
+//
 //
 
 import Anchorage
@@ -29,7 +29,7 @@ public class TableViewContainerCell<View: UIView>: UITableViewCell {
     public lazy var containerView: UIView = {
         let containerView = UIView()
 
-        containerView.backgroundColor = .white
+        containerView.backgroundColor = Asset.Colors.backgroundPrimary.color
         containerView.layer.masksToBounds = true
 
         return containerView
@@ -37,7 +37,7 @@ public class TableViewContainerCell<View: UIView>: UITableViewCell {
 
     fileprivate let shadowView: UIView = {
         let shadowView = UIView()
-        shadowView.backgroundColor = .white
+        shadowView.backgroundColor = Asset.Colors.backgroundPrimary.color
 
         return shadowView
     }()
