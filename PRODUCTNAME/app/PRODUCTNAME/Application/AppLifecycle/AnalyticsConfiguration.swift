@@ -7,6 +7,7 @@
 //
 
 import Swiftilities
+import Services
 import UIKit
 
 struct AnalyticsConfiguration: AppLifecycle, PageNameConfiguration {
@@ -24,6 +25,18 @@ struct AnalyticsConfiguration: AppLifecycle, PageNameConfiguration {
     }
 
     func onDidLaunch(application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-        DefaultBehaviors(behaviors: [GoogleTrackPageViewBehavior()]).inject()
+
+        guard FirebaseAnalytics.shared.configureApplication(application, launchOptions: launchOptions) else { return }
+
+        var behaviors: [ViewControllerLifecycleBehavior] = []
+        switch BuildType.active {
+        case .release:
+            behaviors = [
+                FirebaseTrackPageViewBehavior(),
+            ]
+        default: break
+        }
+
+        DefaultBehaviors(behaviors: behaviors).inject()
     }
 }

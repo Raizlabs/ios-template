@@ -2,8 +2,8 @@
 //  Sprint.xcconfig
 //  {{ cookiecutter.project_name | replace(' ', '') }}
 //
-//  Created by {{ cookiecutter.lead_dev }} on {% now 'utc', '%D' %}.
-//  Copyright © {% now 'utc', '%Y' %} {{ cookiecutter.company_name }}. All rights reserved.
+//  Created by {{ cookiecutter.lead_dev }} on TODAYSDATE.
+//  Copyright © THISYEAR {{ cookiecutter.company_name }}. All rights reserved.
 //
 
 #include "{{ cookiecutter.project_name | replace(' ', '') }}/Resources/xcconfig/Raizlabs-Account.xcconfig"
@@ -23,6 +23,9 @@ PROVISIONING_PROFILE_{{ cookiecutter.project_name | replace(' ', '') }} = 8876e4
 FABRIC_API_KEY = $(INTERNAL_FABRIC_API_KEY)
 FABRIC_BUILD_SECRET = $(INTERNAL_BUILD_SECRET)
 SWIFT_ACTIVE_COMPILATION_CONDITIONS = RZINTERNAL
+
+//FIXME: Insert AppCenter Secret
+// APPCENTER_APP_SECRET = xxxxxx
 
 // This file must be included last to properly resolve the offical Xcode variables.
 #include "{{ cookiecutter.project_name | replace(' ', '') }}/Resources/xcconfig/Global.xcconfig"

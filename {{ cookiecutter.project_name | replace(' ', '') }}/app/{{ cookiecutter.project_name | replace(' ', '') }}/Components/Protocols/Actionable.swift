@@ -2,9 +2,11 @@
 //  Actionable.swift
 //  {{ cookiecutter.project_name | replace(' ', '') }}
 //
-//  Created by {{ cookiecutter.lead_dev }} on {% now 'utc', '%D' %}.
-//  Copyright © {% now 'utc', '%Y' %} {{ cookiecutter.company_name }}. All rights reserved.
+//  Created by {{ cookiecutter.lead_dev }} on TODAYSDATE.
+//  Copyright © THISYEAR {{ cookiecutter.company_name }}. All rights reserved.
 //
+
+import UIKit
 
 protocol Actionable: class {
     associatedtype ActionType
